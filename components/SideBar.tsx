@@ -1,11 +1,27 @@
 import styles from "./styles/SideBar.module.scss"
+import { AccessAlarm, ArrowForwardIos } from '@mui/icons-material';
+import { Icon } from "@mui/material";
 function SideBar() {
     return (
-        <main>
-            <h1>Helo</h1>
-            <h1>Helo</h1>
-            <h1>Helo</h1>
-
+        <main className={styles.sidebar}>
+            <article>
+                <h3>Member's Area</h3>
+                <div className={styles.bigLine}><div></div></div>
+                <span>
+                <p><ArrowForwardIos/>Get Register</p>
+                <p><ArrowForwardIos/>Member Sign In</p>
+                </span>
+            </article>
+            <article>
+                <h3>Authors</h3>
+                <div className={styles.bigLine}><div></div></div>
+                <span>
+                <p><ArrowForwardIos/> Kin Smith</p>
+                <p><ArrowForwardIos/>Riya</p>
+                <p><ArrowForwardIos/>Tisth</p>
+                <p><ArrowForwardIos/>Lorry</p>
+                </span>
+            </article>
         </main>
     )
 }

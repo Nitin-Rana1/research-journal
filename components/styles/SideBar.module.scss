@@ -1,13 +1,35 @@
+.bigLine {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  div {
+    border-top: 1px solid black;
+    box-sizing: border-box;
+    width: 40%;
+    max-width: 170px;
+    min-width: 90px;
+    height: 0.1em;
+  }
+}
 .sidebar{
     article {
       display: grid;
-      place-items: center;
-      padding: 2em 4em;
+    //   place-items: center;
+      padding: 2em 3.5em;
       h3{
         text-align: center;
         font-weight: 500;
         font-size: 1.25em;
         margin-bottom: 0.5em;
+      }
+      span{
+        color: #0c2375;
+        padding: 0.5em;
+        padding-right: 3em;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        p{
+            display: flex;
+        }
       }
     }
     .search{
