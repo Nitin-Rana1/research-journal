@@ -8,7 +8,7 @@ function SideBar() {
                 <h3>Member&#39;s Area</h3>
                 <div className={styles.bigLine}><div></div></div>
                 <span>
-                <p><ArrowForwardIos/>Get Register</p>
+                <p><ArrowForwardIos/>Get Registermm</p>
                 <p><ArrowForwardIos/>Member Sign In</p>
                 </span>
             </article>

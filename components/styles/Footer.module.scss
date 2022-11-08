@@ -12,12 +12,10 @@
   }
 }
 .footer {
-    // background-color: #cfd9fc;
-    background-color: pink;
-    padding: 1em 2em 6em 2em;
+    background-color: #cfd9fc;
+    padding: 1em 2em 3em 2em;
     color: #475383;
     margin-top: 2em;
-  
     article {
     //   display: grid;
       margin-bottom: 2em;
@@ -44,6 +42,7 @@
       img {
         max-width: 3em;
         margin-bottom: 0.5em;
+        width: clamp(1em, 2em, 3em);
       }
     }
   }
