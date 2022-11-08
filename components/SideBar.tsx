@@ -5,7 +5,7 @@ function SideBar() {
     return (
         <main className={styles.sidebar}>
             <article>
-                <h3>Members Area</h3>
+                <h3>Member &apos s Area</h3>
                 <div className={styles.bigLine}><div></div></div>
                 <span>
                 <p><ArrowForwardIos/>Get Register</p>
