@@ -2,7 +2,7 @@ import styles from "./styles/SideBar.module.scss"
 function SideBar(){
     return(
         <aside className={styles.sidebar}>
-        <article className={styles.search}>
+        {/* <article className={styles.search}>
           <h3>Search Article</h3>
           <div className={styles.bigLine} >
             <div></div>
@@ -17,7 +17,7 @@ function SideBar(){
               <li>Member Sign In</li>
             </ul>
           </span>
-        </article>
+        </article> */}
       </aside> 
     )
 }
