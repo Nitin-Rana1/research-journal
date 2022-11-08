@@ -1,4 +1,4 @@
-import styles from "./styles/header.module.scss";
+import styles from "./styles/Header.module.scss";
 function Header (){
     return(
         <header className={styles.header}>
