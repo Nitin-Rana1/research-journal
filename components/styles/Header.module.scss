@@ -1,0 +1,30 @@
+.header {
+
+    background-color: #9fb3f9;
+    font-size: 1em;
+    padding: 1em 2.5em 4em 2.5em;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  
+    img {
+      max-width: 9rem;
+    }
+  
+    h3,
+    h5 {
+      margin: 0;
+      padding: 0.3rem;
+      font-weight: bold;
+    }
+  
+    h2 {
+      font-size: 1.1em;
+    }
+  
+    h4 {
+      font-size: 1em;
+    }
+  }

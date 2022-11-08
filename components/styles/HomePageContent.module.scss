@@ -1,0 +1,82 @@
+.bigLine,
+.smallLine {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  div {
+    border-top: 1px solid black;
+    box-sizing: border-box;
+    width: 40%;
+    max-width: 110px;
+    height: 0.1em;
+  }
+}
+
+.mainSection {
+  .basicArticle {
+    padding: 2em 2.5em;
+    padding-bottom: 0;
+    header {
+      text-align: center;
+      font-weight: 500;
+      font-size: 1.25em;
+      p{
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .bigLine {
+    div {
+      width: 60%;
+      max-width: 170px;
+    }
+  }
+  .buttonDiv{
+    display: grid;
+    place-items: center;
+
+  }
+}
+
+.sidebar{
+    article {
+      display: grid;
+      place-items: center;
+      padding: 2em 4em;
+      h3{
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.25em;
+        margin-bottom: 0.5em;
+      }
+    }
+    .search{
+      input{
+        margin: 1em 0;
+      }
+    }
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .mainSection{
+    order: 2;
+  }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
