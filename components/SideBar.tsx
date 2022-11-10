@@ -1,26 +1,21 @@
 import styles from "./styles/SideBar.module.scss"
 import { AccessAlarm, ArrowForwardIos } from '@mui/icons-material';
-import { Icon } from "@mui/material";
+import { Button, Icon } from "@mui/material";
 function SideBar() {
     return (
         <main className={styles.sidebar}>
             <article>
-                <h3>Member&#39;s Area</h3>
-                <div className={styles.bigLine}><div></div></div>
-                <span>
-                <p><ArrowForwardIos/>Get Registermm</p>
-                <p><ArrowForwardIos/>Member Sign In</p>
-                </span>
-            </article>
+                <div className={styles.blueButtonGroup}>
+                <Button variant="contained" className={styles.blueButton}>ISSN: 2432-1001 </Button>
+                <Button variant="contained" className={styles.blueButton}>DOI: 10.31695/UERAT</Button>
+                <Button variant="outlined" className={styles.plainButton}>Author Guidelines</Button>
+                <Button variant="outlined" className={styles.plainButton}>Article Processing Fee</Button>
+                <Button variant="outlined" className={styles.plainButton}>Policies</Button>
+                 
+                </div>
+                </article>
             <article>
-                <h3>Authors</h3>
-                <div className={styles.bigLine}><div></div></div>
-                <span>
-                <p><ArrowForwardIos/> Kin Smith</p>
-                <p><ArrowForwardIos/>Riya</p>
-                <p><ArrowForwardIos/>Tisth</p>
-                <p><ArrowForwardIos/>Lorry</p>
-                </span>
+                
             </article>
         </main>
     )

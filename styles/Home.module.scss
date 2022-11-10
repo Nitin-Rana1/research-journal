@@ -11,26 +11,25 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .main{
-    display: flex;
-    justify-content: center;
-  }
+  
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  // .main{
-  //   padding-right: 10em;
-  //   padding-left: 10em;
-
-  // }
+  .main{
+    display: flex;
+    justify-content: center;
+    padding-right: 2vw;
+    padding-left: 2vw;
+  }
 } 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  // .main{
-  //   padding-right: 15em;
-  //   padding-left: 15em;
-
-  // }
+  .main{
+    display: flex;
+    justify-content: center;
+    padding-right: 10vw;
+    padding-left: 10vw;
+  }
 }

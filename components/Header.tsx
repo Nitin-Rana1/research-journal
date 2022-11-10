@@ -19,7 +19,7 @@ function Header({ toggleDrawer }: any) {
         <span className={styles.icon}>
         <Menu onClick={toggleDrawer(true)} />
         </span>
-        {['Home', 'Submit Papers', 'View Your Work', 'Instructions For Authors', 'Policies'].map((val)=>(
+        {['Home', 'Current Issue', 'Editorial Policy', 'About', 'Sign In', 'Sign Up'].map((val)=>(
           <div key={val} className={styles.menus}>
             {val}
           </div>
