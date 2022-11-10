@@ -1,3 +1,4 @@
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 .bigLine,
 .smallLine {
   display: grid;
@@ -39,25 +40,6 @@
   }
 }
 
-.sidebar{
-    article {
-      display: grid;
-      place-items: center;
-      padding: 2em 4em;
-      h3{
-        text-align: center;
-        font-weight: 500;
-        font-size: 1.25em;
-        margin-bottom: 0.5em;
-      }
-    }
-    .search{
-      input{
-        margin: 1em 0;
-      }
-    }
-  }
-
   /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 }
@@ -68,20 +50,12 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .mainSection{
-    order: 2;
-    width: clamp(50vw, 60vw, 70vw);
-    justify-content: center;
-
-  }
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .main{
-    min-width: 50vw;
-width: clamp(30vw, 40vw, 50vw);
-
+  .mainSection{
+    max-width: 60vw;
   }
 } 
 

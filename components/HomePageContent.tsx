@@ -1,7 +1,7 @@
 import styles from "./styles/HomePageContent.module.scss"
 import Button from '@mui/material/Button';
 
-function HomePageContent({handleSubmitButton}: any){
+function HomePageContent({handleSubmitPageButton}: any){
     return(
         <section className={styles.mainSection}>
           <article className={styles.basicArticle}>
@@ -30,7 +30,7 @@ function HomePageContent({handleSubmitButton}: any){
               veniam consequat sunt nostrud amet.
             </p>
             <div className={styles.buttonDiv}>
-            <Button onClick={handleSubmitButton} variant="contained" sx={{backgroundColor: "#082691", padding:"1em 3em"}}>Submit Research Journal</Button>
+            <Button onClick={handleSubmitPageButton} variant="contained" sx={{backgroundColor: "#082691", padding:"1em 3em"}}>Submit Research Journal</Button>
             </div>
             <p>
               <b>Article Types: </b>Research Paper, Survey Paper, Informative Article, Case Studies,

@@ -19,8 +19,8 @@ function User() {
                 <>
                     <div className={styles.imgHolder}>
 
-                    </div>
                     <img src={userData.profilePic} alt='profilepic' />
+                    </div>
                     <section className={styles.info}>
                         <div>
 
