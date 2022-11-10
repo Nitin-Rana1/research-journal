@@ -11,12 +11,8 @@ function SideBar() {
                 <Button variant="outlined" className={styles.plainButton}>Author Guidelines</Button>
                 <Button variant="outlined" className={styles.plainButton}>Article Processing Fee</Button>
                 <Button variant="outlined" className={styles.plainButton}>Policies</Button>
-                 
                 </div>
                 </article>
-            <article>
-                
-            </article>
         </main>
     )
 }

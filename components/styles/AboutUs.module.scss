@@ -1,17 +1,12 @@
 .main{
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50vh;
     padding: 0 2em;
-    .imgHolder{
-        display: flex;
-        justify-content: center;
+    h1{
+        color : #3663ff;
     }
-    img{
-        clip-path: circle(50% at 50% 50%);
-    }
-
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {

@@ -54,13 +54,7 @@ function LoginOrSignUp() {
                         <img src='./icons/app_icon.png' alt='boy' />
                     </span>
                     <br />
-                    {/* <Button
-              isLoading
-              loadingText='Loading'
-              colorScheme='teal'
-              variant='outline'
-            ></Button> */}
-                    <Button >
+                    <Button variant="contained">
                         Loading
                     </Button>
                 </p>
@@ -70,7 +64,6 @@ function LoginOrSignUp() {
     if (error) {
         return (
             <div>
-                {/* <p>Error: {error}</p> */}
                 <p>Sorry :</p>
             </div>
         );
@@ -84,9 +77,12 @@ function LoginOrSignUp() {
         );
     }
     return (
-        <div className={styles.container1}>
-            <button onClick={logIn}>Log In</button>
-        </div>
+        <main className={styles.container1}>
+            <div>
+                <h1>Hi, submit your research papers by signing in first!!</h1>
+            <Button variant = "contained" onClick={logIn}>Log In</Button>
+            </div>
+        </main>
     );
 }
 export default LoginOrSignUp;

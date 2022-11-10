@@ -2,7 +2,7 @@ import styles from "./styles/Header.module.scss";
 import {Menu} from '@mui/icons-material';
 import { Button } from "@mui/material";
 
-function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton }: any) {
+function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton, handleAboutUsPageButton, handleCurrentIssuePageButton, handleEditoryPolicyPageButton, handleLogOut}: any) {
   return (
     <header className={styles.header}>
           
@@ -27,13 +27,13 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton 
           {index === 4? <Button key = {val} onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">{val}</Button>  : <Button key = {val} className = {styles.menus} variant="text">{val}</Button>}
         })} */}
         <Button onClick={handleHomePageButton} className = {styles.menus} variant="text">Home</Button>
-        <Button  className = {styles.menus} variant="text">Current Issue</Button>
-        <Button  className = {styles.menus} variant="text">Editorial Policy</Button>
-        <Button  className = {styles.menus} variant="text">About</Button>
+        <Button onClick = {handleCurrentIssuePageButton} className = {styles.menus} variant="text">Current Issue</Button>
+        <Button onClick= {handleEditoryPolicyPageButton} className = {styles.menus} variant="text">Editorial Policy</Button>
+        <Button onClick={handleAboutUsPageButton} className = {styles.menus} variant="text">About</Button>
 
 
-        <Button onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">Login</Button>
-        <Button onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">Sign Up</Button>
+        <Button onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">Sign In/Up</Button>
+        <Button onClick={handleLogOut} className = {styles.menus} variant="text">Log Out</Button>
 
 
       </nav>

@@ -14,22 +14,41 @@ function User() {
         });
     }, []);
     return (
-        <main className={styles.container}>
+        <main className={styles.main}>
             {userData && (
                 <>
+                    <div className={styles.imgHolder}>
+
                     <img src={userData.profilePic} alt='profilepic' />
-                    <article className={styles.info}>
+                    </div>
+                    <section className={styles.info}>
                         <div>
 
-                        <b>Name: </b>{user!.displayName}
+                            <b>Name: </b>{user!.displayName}
                         </div>
                         <div>
-                        <b>Email: </b> {user!.email}
+                            <b>Email: </b> {user!.email}
                         </div>
-                    </article>
+                    </section>
+                    <article>
+                        <div>
+                            <b>Research Papers: </b> 0
+                        </div>
+                        <div>
+                            <b>Total Views: </b> 0
+                        </div>
+                        <div>
+                            <b>Total likes: </b> 0
+                        </div>
+                        <div>
+                            <b>Papers Downloads: </b> 0
+                        </div>
+
+                </article>
                 </>
-            )}
-        </main>
+    )
+}
+        </main >
     );
 }
 export default User;
