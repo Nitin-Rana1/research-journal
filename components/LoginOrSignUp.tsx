@@ -8,7 +8,7 @@ import { auth, db } from "../fireb/firebApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 //   import HomePage from "../component/homePage";
 import { useState, useEffect } from "react";
-import styles from "./styles/loginOrSignUp.module.scss";
+import styles from "./styles/LoginOrSignUp.module.scss";
 import { serverTimestamp, getDoc, doc, setDoc, DocumentData } from "firebase/firestore";
 //   import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Button } from "@mui/material";
