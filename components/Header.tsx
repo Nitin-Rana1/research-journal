@@ -1,7 +1,8 @@
 import styles from "./styles/Header.module.scss";
 import {Menu} from '@mui/icons-material';
+import { Button } from "@mui/material";
 
-function Header({ toggleDrawer }: any) {
+function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton }: any) {
   return (
     <header className={styles.header}>
           
@@ -19,11 +20,22 @@ function Header({ toggleDrawer }: any) {
         <span className={styles.icon}>
         <Menu onClick={toggleDrawer(true)} />
         </span>
-        {['Home', 'Current Issue', 'Editorial Policy', 'About', 'Sign In', 'Sign Up'].map((val)=>(
-          <div key={val} className={styles.menus}>
-            {val}
-          </div>
-        ))}
+        {/* {['Home', 'Current Issue', 'Editorial Policy', 'About', 'Sign In', 'Sign Up'].map((val, index)=>(
+          {index === 4 || index === 5 ? <Button key = {val} onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">{val}</Button> : <Button key = {val} className = {styles.menus} variant="text">{val}</Button>}
+        ))} */}
+        {/* {['Home', 'Current Issue', 'Editorial Policy', 'About', 'Sign In', 'Sign Up'].map((val, index)=>{
+          {index === 4? <Button key = {val} onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">{val}</Button>  : <Button key = {val} className = {styles.menus} variant="text">{val}</Button>}
+        })} */}
+        <Button onClick={handleHomePageButton} className = {styles.menus} variant="text">Home</Button>
+        <Button  className = {styles.menus} variant="text">Current Issue</Button>
+        <Button  className = {styles.menus} variant="text">Editorial Policy</Button>
+        <Button  className = {styles.menus} variant="text">About</Button>
+
+
+        <Button onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">Login</Button>
+        <Button onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">Sign Up</Button>
+
+
       </nav>
     </header>
   )
