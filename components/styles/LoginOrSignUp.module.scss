@@ -1,36 +1,41 @@
-.container1{
+.container1 {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50vh;
     padding: 0 2em;
-    h1{
-        color : #3663ff;
+
+    h1 {
+        font-size: 1.3em;
+    }
+
+    .signInButton {
+        background-color: white;
+        color: #787878;
+
+        img {
+            height: 1.5em;
+            margin-right: 1.5em;
+        }
     }
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
-}
+@media only screen and (max-width: 600px) {}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  
-}
+@media only screen and (min-width: 600px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  
-}
+@media only screen and (min-width: 768px) {}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    .container1{
+    .container1 {
         min-width: 60vw;
         max-width: 60vw;
     }
-  
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

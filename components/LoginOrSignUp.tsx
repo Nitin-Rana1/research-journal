@@ -14,8 +14,9 @@ import { serverTimestamp, getDoc, doc, setDoc, DocumentData } from "firebase/fir
 import { Button } from "@mui/material";
 // import LoadingButton from '@mui/lab/LoadingButton';
 import User from "./User";
+import GoogleIcon from '@mui/icons-material/Google';
 
-async function createDB(uid: string, name: string|null, email: string|null, photoURL: string|null) {
+async function createDB(uid: string, name: string | null, email: string | null, photoURL: string | null) {
     try {
         await setDoc(doc(db, "usersData", uid), {
             profilePic: photoURL,
@@ -55,7 +56,7 @@ function LoginOrSignUp() {
                     </span>
                     <br />
                     <Button variant="contained">
-                        Loading
+                        Loading.....
                     </Button>
                 </p>
             </div>
@@ -72,7 +73,7 @@ function LoginOrSignUp() {
         return (
             <div>
                 {/* <HomePage userUid={user.uid} /> */}
-                <User/>
+                <User />
             </div>
         );
     }
@@ -80,7 +81,7 @@ function LoginOrSignUp() {
         <main className={styles.container1}>
             <div>
                 <h1>Hi, submit your research papers by signing in first!!</h1>
-            <Button variant = "contained" onClick={logIn}>Log In</Button>
+                <Button variant="contained" className={styles.signInButton} onClick={logIn}><img src="/GoogleIcon.png" /> Continue With Google</Button>
             </div>
         </main>
     );
