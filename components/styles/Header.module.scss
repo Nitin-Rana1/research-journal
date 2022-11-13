@@ -8,13 +8,21 @@
   .headerContent {
     background-color: #9fb3f9;
     font-size: 1em;
-    padding: 1em 2.5em 4em 2.5em;
+    padding: 1em 2.5em 3em 2.5em;
     display: grid;
     place-items: center;
     text-align: center;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 0 27px 0, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+    h3 {
+      font-size: 1.2em;
+    }
+
+    h5 {
+      font-size: 0.7em;
+    }
   }
 
   .nav {
@@ -33,7 +41,7 @@
   }
 
   img {
-    max-width: 9rem;
+    max-width: 5rem;
   }
 
   h3,
@@ -73,6 +81,12 @@
 
     .icon {
       display: none;
+    }
+  }
+
+  .headerContent {
+    .logoIcon {
+      min-width: 9em;
     }
   }
 }

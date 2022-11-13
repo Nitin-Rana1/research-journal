@@ -32,11 +32,11 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
       <div className={styles.headerContent}>
         <img className={styles.logoIcon} alt="" src="/logo.png" />
         <h3 className={styles.headerTitle}>
-          International Journal of Science and Journal
+          Graphic Era Department of Science and Journal
         </h3>
         <h5 className={styles.headerSubTitle}>
-          Amet minim mollit non deserunt ullamco est sit Amet minim mollit non
-          deserunt
+          Established to help students in their Research<br />
+          <b>Transforming Dreams into Reality</b>
         </h5>
       </div>
       <nav className={styles.nav}>
