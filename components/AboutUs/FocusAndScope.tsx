@@ -3,8 +3,11 @@ import styles from "./AboutUs.module.scss";
 
 function Sec({ head, info, no }: { head: string, info: string, no: number }) {
     return (
-        <p>
-            <b>Section {no}: </b> {head}
+        <p className={styles.sec}>
+            <div className={styles.secHead}>
+
+                <b>Section {no}: </b> {head}
+            </div>
             <div>
                 {info}
             </div>
@@ -13,7 +16,7 @@ function Sec({ head, info, no }: { head: string, info: string, no: number }) {
 }
 function FocusAndScope({ part }: any) {
     return (
-        <main className={styles.FocusAndScope}>
+        <main className={styles.focusAndScope}>
             <h3>
                 FOCUS AND SCOPE
             </h3>

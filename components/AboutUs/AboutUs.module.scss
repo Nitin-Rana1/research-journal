@@ -4,7 +4,16 @@
 
 .editorialTeam {}
 
-.focusAndScope {}
+.focusAndScope {
+    .sec {
+        margin-bottom: 1em;
+
+        .secHead {
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+    }
+}
 
 .aboutTheJournal {}
 
