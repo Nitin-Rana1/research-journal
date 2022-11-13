@@ -1,9 +1,20 @@
-// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+.mainSection {
+  h1 {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  Button {
+    margin-bottom: 3em;
+  }
+}
+
 .bigLine,
 .smallLine {
   display: grid;
   place-items: center;
   width: 100%;
+
   div {
     border-top: 1px solid black;
     box-sizing: border-box;
@@ -17,11 +28,13 @@
   .basicArticle {
     padding: 2em 2.5em;
     padding-bottom: 0;
+
     header {
       text-align: center;
       font-weight: 500;
       font-size: 1.25em;
-      p{
+
+      p {
         margin-bottom: 1rem;
       }
     }
@@ -33,32 +46,29 @@
       max-width: 170px;
     }
   }
-  .buttonDiv{
+
+  .buttonDiv {
     display: grid;
     place-items: center;
 
   }
 }
 
-  /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
+@media only screen and (min-width: 600px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-} 
+@media only screen and (min-width: 768px) {}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .mainSection{
+  .mainSection {
     max-width: 60vw;
   }
-} 
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-}
+@media only screen and (min-width: 1200px) {}

@@ -1,10 +1,16 @@
 import styles from "./styles/HomePageContent.module.scss"
 import Button from '@mui/material/Button';
+import AboutTheJournal from "./AboutUs/AboutTheJournal";
 
 function HomePageContent({ handleSubmitPageButton }: any) {
   return (
-    <section className={styles.mainSection}>
-      <article className={styles.basicArticle}>
+    <main className={styles.mainSection}>
+      <h1>Call For Work</h1>
+      <div className={styles.buttonDiv}>
+        <Button onClick={handleSubmitPageButton} variant="contained" sx={{ backgroundColor: "#082691", padding: "1em 3em" }}>Submit Journal</Button>
+      </div>
+      <AboutTheJournal />
+      {/* <article className={styles.basicArticle}>
         <header className={styles.underlineHeading}>
           <p>Call For Paper</p>
           <div className={styles.bigLine} >
@@ -38,9 +44,9 @@ function HomePageContent({ handleSubmitPageButton }: any) {
           Research Proposals or Synopsis, M.Tech / M.E / PhD Thesis, Photo
           Essay
         </p>
-      </article>
+      </article> */}
 
-    </section>
+    </main>
   )
 }
 export default HomePageContent;
