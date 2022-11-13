@@ -9,12 +9,14 @@ import SideBar from "../components/SideBar";
 import Footer from "../components/Footer";
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import { Inbox , Mail} from '@mui/icons-material';
+import { Inbox, Mail } from '@mui/icons-material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import { Fragment, useState } from 'react';
-import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import LoginOrSignUp from "../components/LoginOrSignUp";
-import AboutUs from '../components/AboutUs';
-import EditoryPolicy from '../components/EditoryPolicy';
+import AboutUs from '../components/AboutUs/AboutUs';
+import EditoryPolicy from '../components/EditorialPolicy/EditoryPolicy';
 import CurrentIssue from '../components/CurrentIssue';
 
 import { auth } from "../fireb/firebApp";
@@ -26,10 +28,15 @@ const Home: NextPage = () => {
   const [submitRP, setSubmitRP] = useState(false);
   const [loginOrSignUp, setLoginOrSignUp] = useState(false);
   const [aboutUs, setAboutUs] = useState(false);
+  const [aboutUsMenu, setAboutUsMenu] = useState(0);
+
   const [editoryPolicy, setEditoryPolicy] = useState(false);
+  const [editoryPolicyMenu, setEditoryPolicyMenu] = useState(0);
+
   const [currentIssue, setCurrentIssue] = useState(false);
 
-  const setAllMainSectionFalse = () =>{
+
+  const setAllMainSectionFalse = () => {
     setHomePageContent(false);
     setSubmitRP(false);
     setLoginOrSignUp(false);
@@ -37,96 +44,172 @@ const Home: NextPage = () => {
     setEditoryPolicy(false);
     setCurrentIssue(false);
   }
- 
+
   const [drawerState, setDrawerState] = useState(false);
-  
-  const toggleDrawer =(open: boolean) =>
-  (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-      (event as React.KeyboardEvent).key === 'Shift')
+
+  const toggleDrawer = (open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
       ) {
         return;
       }
       setDrawerState(open);
     };
-
-    const list = () => (
-      <Box
+  const list = () => (
+    <Box
       sx={{ width: 250 }}
       role="presentation"
-      onClick={toggleDrawer(false)}
+      // onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
-      >
+    >
       <List>
-        {['Home', 'Current Issue', 'Editorial Policy', 'About Us', 'Sign In/ Up', 'Log Out'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {/* {['Home', 'Current Issue', 'Editorial Policy', 'About Us', 'Sign In/ Up', 'Log Out'].map((text, index) => ( */}
+        <div onClick={toggleDrawer(false)}>
+          <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {index === 0 ? <Inbox /> : index === 1 ? <Inbox/> : index === 2 ? <Inbox/> : index === 3 ? <Inbox/> : index === 4 ? <Inbox/> : index === 5 ? <Inbox/> : <Inbox/>}
-              </ListItemIcon>
-              {/* {index === 4 || index === 5 ? <ListItemText onClick={handleLoginOrSignUpButton} primary={text}/> : */}
-            {index === 0 ? <ListItemText onClick={handleHomePageButton} primary={text}/> : index === 1 ? <ListItemText onClick={handleCurrentIssuePageButton} primary = {text} />: index === 2 ? <ListItemText onClick={handleEditoryPolicyPageButton} primary = {text} /> : index === 3 ?<ListItemText onClick={handleAboutUsPageButton} primary = {text} />: index === 4 ? <ListItemText onClick={handleLoginOrSignUpButton} primary = {text} />: <ListItemText onClick={handleLogOut} primary = {text} />}
+              <ListItemText onClick={handleHomePageButton} primary="Home" />
             </ListItemButton>
           </ListItem>
-        ))}
-      </List>
-    </Box>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText onClick={handleCurrentIssuePageButton} primary="Current Issue" />
+            </ListItemButton>
+          </ListItem>
+        </div>
+
+
+        <div>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Editorial Policy</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List onClick={toggleDrawer(false)} >
+                {["Publication Ethics", "Open Access Policy", "Peer-review Policy", "Digital prevention Policy", "Plagiarism Policy", "Journal Policy", "Repository Policy", "Copy Right Policy"].map((value, i) => {
+                  return (
+
+                    <ListItem onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
+                      <ListItemButton>
+                        <ListItemText onClick={() => handleEditoryPolicyPageButton(i)} primary={value} />
+                      </ListItemButton>
+                    </ListItem>
+                  )
+                })}
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+
+        {/* <ListItem disablePadding>
+            <ListItemButton>
+            <ListItemText onClick={handleAboutUsPageButton} primary="About Us" />
+            </ListItemButton>
+          </ListItem> */}
+        <div>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>About Us</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List onClick={toggleDrawer(false)} >
+                {["About The Journal", "Focus And Scope", "Editorial Team"].map((value, i) => {
+                  return (
+
+                    <ListItem onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
+                      <ListItemButton>
+                        <ListItemText onClick={() => handleAboutUsPageButton(i)} primary={value} />
+                      </ListItemButton>
+                    </ListItem>
+                  )
+                })}
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+        <div onClick={toggleDrawer(false)}>
+
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText onClick={handleLoginOrSignUpButton} primary="Sign In/Up" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText onClick={handleLogOut} primary="Log Out" />
+            </ListItemButton>
+          </ListItem>
+        </div>
+
+      </List >
+    </Box >
   );
-  
+
   //Page navigation
-  function handleHomePageButton(){
+  function handleHomePageButton() {
     setAllMainSectionFalse();
-    setHomePageContent(true); 
+    setHomePageContent(true);
   }
-  const handleLoginOrSignUpButton = () =>{
+  const handleLoginOrSignUpButton = () => {
     setAllMainSectionFalse();
     setLoginOrSignUp(true);
   }
-  function handleSubmitPageButton(){
+  function handleSubmitPageButton() {
     setAllMainSectionFalse();
     setSubmitRP(true);
   }
-  function handleAboutUsPageButton(){
+  function handleAboutUsPageButton(i: number) {
     setAllMainSectionFalse();
+    setAboutUsMenu(i);
     setAboutUs(true);
   }
-  function handleEditoryPolicyPageButton(){
+  function handleEditoryPolicyPageButton(i: number) {
     setAllMainSectionFalse();
+    setEditoryPolicyMenu(i);
     setEditoryPolicy(true);
   }
-  function handleCurrentIssuePageButton(){
+  function handleCurrentIssuePageButton() {
     setAllMainSectionFalse();
     setCurrentIssue(true);
   }
-  function handleLogOut(){
-      signOut(auth);
+  function handleLogOut() {
+    signOut(auth);
   }
   return (
 
     <div className={styles.body}>
-        <Fragment key='left'>
-          <Drawer
-            anchor='left'
-            open={drawerState}
-            onClose={toggleDrawer(false)}
-          >
-            {list()}
-          </Drawer>
-        </Fragment>
+      <Fragment key='left'>
+        <Drawer
+          anchor='left'
+          open={drawerState}
+          onClose={toggleDrawer(false)}
+        >
+          {list()}
+        </Drawer>
+      </Fragment>
 
-      <Header toggleDrawer = {toggleDrawer} handleloginOrSignUpButton = {handleLoginOrSignUpButton} handleHomePageButton = {handleHomePageButton} handleAboutUsPageButton = {handleAboutUsPageButton} handleCurrentIssuePageButton={handleCurrentIssuePageButton} handleEditoryPolicyPageButton={handleEditoryPolicyPageButton} handleLogOut = {handleLogOut}/>
+      <Header toggleDrawer={toggleDrawer} handleloginOrSignUpButton={handleLoginOrSignUpButton} handleHomePageButton={handleHomePageButton} handleAboutUsPageButton={handleAboutUsPageButton} handleCurrentIssuePageButton={handleCurrentIssuePageButton} handleEditoryPolicyPageButton={handleEditoryPolicyPageButton} handleLogOut={handleLogOut} />
       <main className={styles.main}>
-        {editoryPolicy && <EditoryPolicy/>}
-        {currentIssue && <CurrentIssue/>}
-        {aboutUs && <AboutUs/>}
-        {loginOrSignUp && <LoginOrSignUp/>}
-        {submitRP && <SubmitRP handleHomePageButton = {handleHomePageButton}/>}
-        {homePageContent && <HomePageContent handleSubmitPageButton = {handleSubmitPageButton}/>}
-        <SideBar/>
+        {editoryPolicy && <EditoryPolicy part={editoryPolicyMenu} />}
+        {currentIssue && <CurrentIssue />}
+        {aboutUs && <AboutUs part={aboutUsMenu} />}
+        {loginOrSignUp && <LoginOrSignUp />}
+        {submitRP && <SubmitRP />}
+        {homePageContent && <HomePageContent handleSubmitPageButton={handleSubmitPageButton} />}
+        <SideBar />
       </main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

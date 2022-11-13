@@ -1,11 +1,34 @@
 import styles from "./styles/Header.module.scss";
-import {Menu} from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from "@mui/material";
+import Menu from '@mui/material/Menu';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import MenuItem from '@mui/material/MenuItem';
+import { useState } from "react";
 
-function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton, handleAboutUsPageButton, handleCurrentIssuePageButton, handleEditoryPolicyPageButton, handleLogOut}: any) {
+function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton, handleAboutUsPageButton, handleCurrentIssuePageButton, handleEditoryPolicyPageButton, handleLogOut }: any) {
+  const [anchorElEdit, setAnchorElEdit] = useState<null | HTMLElement>(null);
+  const [anchorElAbout, setAnchorElAbout] = useState<null | HTMLElement>(null);
+
+  const openEdit = Boolean(anchorElEdit);
+  const openAbout = Boolean(anchorElAbout);
+
+  const handleClickEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElEdit(event.currentTarget);
+  };
+  const handleCloseEdit = () => {
+    setAnchorElEdit(null);
+  };
+  const handleClickAbout = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElAbout(event.currentTarget);
+  };
+  const handleCloseAbout = () => {
+    setAnchorElAbout(null);
+  };
+
   return (
     <header className={styles.header}>
-          
+
       <div className={styles.headerContent}>
         <img className={styles.logoIcon} alt="" src="/logo.png" />
         <h3 className={styles.headerTitle}>
@@ -16,24 +39,70 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
           deserunt
         </h5>
       </div>
-      <nav  className={styles.nav}>
+      <nav className={styles.nav}>
         <span className={styles.icon}>
-        <Menu onClick={toggleDrawer(true)} />
+          <MenuIcon onClick={toggleDrawer(true)} />
         </span>
-        {/* {['Home', 'Current Issue', 'Editorial Policy', 'About', 'Sign In', 'Sign Up'].map((val, index)=>(
-          {index === 4 || index === 5 ? <Button key = {val} onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">{val}</Button> : <Button key = {val} className = {styles.menus} variant="text">{val}</Button>}
-        ))} */}
-        {/* {['Home', 'Current Issue', 'Editorial Policy', 'About', 'Sign In', 'Sign Up'].map((val, index)=>{
-          {index === 4? <Button key = {val} onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">{val}</Button>  : <Button key = {val} className = {styles.menus} variant="text">{val}</Button>}
-        })} */}
-        <Button onClick={handleHomePageButton} className = {styles.menus} variant="text">Home</Button>
-        <Button onClick = {handleCurrentIssuePageButton} className = {styles.menus} variant="text">Current Issue</Button>
-        <Button onClick= {handleEditoryPolicyPageButton} className = {styles.menus} variant="text">Editorial Policy</Button>
-        <Button onClick={handleAboutUsPageButton} className = {styles.menus} variant="text">About</Button>
+        <Button onClick={handleHomePageButton} className={styles.menus} variant="text">Home</Button>
+        <Button onClick={handleCurrentIssuePageButton} className={styles.menus} variant="text">Current Issue</Button>
+        <div className={styles.menus}>
+          <Button
+            id="basic-button"
+            aria-controls={openEdit ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={openEdit ? 'true' : undefined}
+            onClick={handleClickEdit}
+          // className={styles.menus}
+          >
+            Editorial Policies <KeyboardArrowDownIcon />
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElEdit}
+            open={openEdit}
+            onClose={handleCloseEdit}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            {["Publication Ethics", "Open Access Policy", "Peer-review Policy", "Digital prevention Policy", "Plagiarism Policy", "Journal Policy", "Repository Policy", "Copy Right Policy"].map((value, i) => {
+              return (
+                <MenuItem onClick={() => { handleCloseEdit(); handleEditoryPolicyPageButton(i) }}>{value}</MenuItem>
+              )
+            })}
+          </Menu>
+        </div>
+        {/* <Button onClick={handleAboutUsPageButton} className={styles.menus} variant="text">About</Button> */}
+        <div className={styles.menus}>
+          <Button
+            id="basic-button"
+            aria-controls={openAbout ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={openAbout ? 'true' : undefined}
+            onClick={handleClickAbout}
+          // className={styles.menus}
+          >
+            About<KeyboardArrowDownIcon />
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElAbout}
+            open={openAbout}
+            onClose={handleCloseAbout}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            {["About The Journal", "Focus & Scope", "Editorial Team"].map((value, i) => {
+              return (
+                <MenuItem onClick={() => { handleCloseAbout(); handleAboutUsPageButton(i) }}>{value}</MenuItem>
+              )
+            })}
+          </Menu>
+        </div>
 
-
-        <Button onClick={handleloginOrSignUpButton} className = {styles.menus} variant="text">Sign In/Up</Button>
-        <Button onClick={handleLogOut} className = {styles.menus} variant="text">Log Out</Button>
+        <Button onClick={handleloginOrSignUpButton} className={styles.menus} variant="text">Sign In/Up</Button>
+        <Button onClick={handleLogOut} className={styles.menus} variant="text">Log Out</Button>
 
 
       </nav>
