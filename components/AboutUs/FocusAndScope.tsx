@@ -23,7 +23,7 @@ function FocusAndScope({ part }: any) {
                 <p>
 
                     {["The focus on journal writing should demonstrate a good undeerstanding of the topic including enough examples and important details.", "Research focuses on enhancing your problem solving abilities and critical thinking.", "The scope of a study explains the extend to which the reseach area will be explored in the work and specifies the parameters within the study.", "It helps nurture the curiosity of the budding innovators and researchers.", "It focuses on providing quality  and correct information on a wide variety of topics."].map((v, i) => (
-                        <div><b>{i + 1}. </b>{v}</div>
+                        <div key={i}><b>{i + 1}. </b>{v}</div>
                     ))}
                 </p>
             </p>
@@ -38,7 +38,7 @@ function FocusAndScope({ part }: any) {
                         "3.Review Articles: A review article is an article which aims to present comprehensively already existing findings.",
                         "Innovations: An innovation is an article which aims to present new procedures or devices.",
                         "Selected conference articles: Upon an agreement with a conference committee, selected papers may be published in the Journal in a special section. In this case, the editor will appoint in collaboration with the conference committee guest editors."].map((v, i) => (
-                            <div><b>{i + 1}. </b>{v}</div>
+                            <div key={i}><b>{i + 1}. </b>{v}</div>
                         ))
                 }
             </p>

@@ -95,7 +95,7 @@ const Home: NextPage = () => {
                 {["Publication Ethics", "Open Access Policy", "Peer-review Policy", "Digital prevention Policy", "Plagiarism Policy", "Journal Policy", "Repository Policy", "Copy Right Policy"].map((value, i) => {
                   return (
 
-                    <ListItem onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
+                    <ListItem key={i} onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
                       <ListItemButton>
                         <ListItemText onClick={() => handleEditoryPolicyPageButton(i)} primary={value} />
                       </ListItemButton>
@@ -106,12 +106,6 @@ const Home: NextPage = () => {
             </AccordionDetails>
           </Accordion>
         </div>
-
-        {/* <ListItem disablePadding>
-            <ListItemButton>
-            <ListItemText onClick={handleAboutUsPageButton} primary="About Us" />
-            </ListItemButton>
-          </ListItem> */}
         <div>
           <Accordion>
             <AccordionSummary
@@ -126,7 +120,7 @@ const Home: NextPage = () => {
                 {["About The Journal", "Focus And Scope", "Editorial Team"].map((value, i) => {
                   return (
 
-                    <ListItem onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
+                    <ListItem key={i} onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
                       <ListItemButton>
                         <ListItemText onClick={() => handleAboutUsPageButton(i)} primary={value} />
                       </ListItemButton>

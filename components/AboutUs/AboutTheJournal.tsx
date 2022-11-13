@@ -21,7 +21,7 @@ function AboutTheJournal({ part }: any) {
                     "Mode of submission(format):PDF/Google drive",
                     "Number of papers-3"].map((val, i) => {
                         return (
-                            <li>
+                            <li key={i}>
                                 {/* <b>{i + 1}:</b>  */}
                                 {val}
                             </li>
@@ -43,7 +43,7 @@ function AboutTheJournal({ part }: any) {
                     "The extracted information should be form reliable source.",
                     "It should have a unique DOI."].map((value, index) => {
                         return (
-                            <div><b>{index + 1}: </b>{value}</div>
+                            <div key={index}><b>{index + 1}: </b>{value}</div>
                         )
                     })}
             </p>
