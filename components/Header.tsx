@@ -67,7 +67,7 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
           >
             {["Publication Ethics", "Open Access Policy", "Peer-review Policy", "Digital prevention Policy", "Plagiarism Policy", "Journal Policy", "Repository Policy", "Copy Right Policy"].map((value, i) => {
               return (
-                <MenuItem onClick={() => { handleCloseEdit(); handleEditoryPolicyPageButton(i) }}>{value}</MenuItem>
+                <MenuItem key={i} onClick={() => { handleCloseEdit(); handleEditoryPolicyPageButton(i) }}>{value}</MenuItem>
               )
             })}
           </Menu>
@@ -95,7 +95,7 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
           >
             {["About The Journal", "Focus & Scope", "Editorial Team"].map((value, i) => {
               return (
-                <MenuItem onClick={() => { handleCloseAbout(); handleAboutUsPageButton(i) }}>{value}</MenuItem>
+                <MenuItem key={i} onClick={() => { handleCloseAbout(); handleAboutUsPageButton(i) }}>{value}</MenuItem>
               )
             })}
           </Menu>

@@ -22,9 +22,13 @@ function FocusAndScope({ part }: any) {
                 an aid for composing high caliber reseach paper.
                 <p>
 
-                    {["The focus on journal writing should demonstrate a good undeerstanding of the topic including enough examples and important details.", "Research focuses on enhancing your problem solving abilities and critical thinking.", "The scope of a study explains the extend to which the reseach area will be explored in the work and specifies the parameters within the study.", "It helps nurture the curiosity of the budding innovators and researchers.", "It focuses on providing quality  and correct information on a wide variety of topics."].map((v, i) => (
-                        <div key={i}><b>{i + 1}. </b>{v}</div>
-                    ))}
+                    {["The focus on journal writing should demonstrate a good undeerstanding of the topic including enough examples and important details.",
+                        "Research focuses on enhancing your problem solving abilities and critical thinking.",
+                        "The scope of a study explains the extend to which the reseach area will be explored in the work and specifies the parameters within the study.",
+                        "It helps nurture the curiosity of the budding innovators and researchers.",
+                        "It focuses on providing quality  and correct information on a wide variety of topics."].map((v, i) => (
+                            <div key={i}><b>{i + 1}. </b>{v}</div>
+                        ))}
                 </p>
             </p>
             <h3>
