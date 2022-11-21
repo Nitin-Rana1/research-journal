@@ -199,7 +199,7 @@ const Home: NextPage = () => {
         {currentIssue && <CurrentIssue />}
         {aboutUs && <AboutUs part={aboutUsMenu} />}
         {loginOrSignUp && <LoginOrSignUp />}
-        {submitRP && <SubmitRP />}
+        {submitRP && <SubmitRP handleloginOrSignUpButton={handleLoginOrSignUpButton} />}
         {homePageContent && <HomePageContent handleSubmitPageButton={handleSubmitPageButton} />}
         <SideBar />
       </main>

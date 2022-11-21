@@ -3,6 +3,7 @@ import styles from "./styles/User.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { onSnapshot, doc, updateDoc, arrayRemove, DocumentData } from "firebase/firestore";
+import { Button } from "@mui/material";
 // import { Button, ButtonGroup } from "@chakra-ui/react";
 
 function User() {
@@ -30,7 +31,12 @@ function User() {
                         <div>
                             <b>Email: </b> {user!.email}
                         </div>
+                        <br />
+                        <div className={styles.submitButton}>
+                            <Button variant="contained">Submit New Paper</Button>
+                        </div>
                     </section>
+                    <br />
                     <article>
                         <div>
                             <b>Research Papers: </b> 0

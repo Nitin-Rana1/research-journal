@@ -7,7 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import { useState } from "react";
 import Image from "next/image";
 
-function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton, handleAboutUsPageButton, handleCurrentIssuePageButton, handleEditoryPolicyPageButton, handleLogOut }: any) {
+function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
+  handleAboutUsPageButton, handleCurrentIssuePageButton,
+  handleEditoryPolicyPageButton, handleLogOut }: any) {
   const [anchorElEdit, setAnchorElEdit] = useState<null | HTMLElement>(null);
   const [anchorElAbout, setAnchorElAbout] = useState<null | HTMLElement>(null);
 
