@@ -6,6 +6,7 @@
   border-bottom-right-radius: 15px;
 
   .headerContent {
+    position: relative;
     background-color: #9fb3f9;
     font-size: 1em;
     padding: 1em 2.5em 3em 2.5em;
@@ -22,6 +23,17 @@
 
     h5 {
       font-size: 0.7em;
+    }
+
+    nav {
+      display: none;
+      position: absolute;
+      right: 2em;
+      top: 1em;
+
+      span {
+        padding-left: 2em;
+      }
     }
   }
 
@@ -40,8 +52,10 @@
     }
   }
 
-  img {
-    max-width: 5rem;
+  .logoIcon {
+    position: relative;
+    width: 5em;
+    height: 5em;
   }
 
   h3,
@@ -67,7 +81,14 @@
 @media only screen and (min-width: 600px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+  .headerContent {
+    .logoIcon {
+      min-width: 7em;
+      min-height: 7em;
+    }
+  }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
@@ -87,6 +108,12 @@
   .headerContent {
     .logoIcon {
       min-width: 9em;
+      min-height: 9em;
+    }
+
+    nav {
+      display: block !important;
+
     }
   }
 }

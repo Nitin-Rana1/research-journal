@@ -11,6 +11,7 @@ function User() {
     useEffect(() => {
         const unsub = onSnapshot(doc(db, "usersData", user!.uid), (doc) => {
             setuserData(doc.data());
+            console.log(doc.data());
         });
     }, []);
     return (
@@ -19,7 +20,7 @@ function User() {
                 <>
                     <div className={styles.imgHolder}>
 
-                    <img src={userData.profilePic} alt='profilepic' />
+                        <img src={userData.profilePic} alt='profilepic' />
                     </div>
                     <section className={styles.info}>
                         <div>
@@ -44,10 +45,10 @@ function User() {
                             <b>Papers Downloads: </b> 0
                         </div>
 
-                </article>
+                    </article>
                 </>
-    )
-}
+            )
+            }
         </main >
     );
 }

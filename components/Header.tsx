@@ -5,6 +5,7 @@ import Menu from '@mui/material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from "react";
+import Image from "next/image";
 
 function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton, handleAboutUsPageButton, handleCurrentIssuePageButton, handleEditoryPolicyPageButton, handleLogOut }: any) {
   const [anchorElEdit, setAnchorElEdit] = useState<null | HTMLElement>(null);
@@ -30,7 +31,9 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
     <header className={styles.header}>
 
       <div className={styles.headerContent}>
-        <img className={styles.logoIcon} alt="" src="/logo.png" />
+        <div className={styles.logoIcon}>
+          <Image src="/logo.png" fill alt="logoPic" />
+        </div>
         <h3 className={styles.headerTitle}>
           Graphic Era Department of Science and Journal
         </h3>
@@ -38,6 +41,10 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
           Established to help students in their Research<br />
           <b>Transforming Dreams into Reality</b>
         </h5>
+        <nav onClick={handleloginOrSignUpButton}>
+          <span>Register</span>
+          <span>Log In</span>
+        </nav>
       </div>
       <nav className={styles.nav}>
         <span className={styles.icon}>

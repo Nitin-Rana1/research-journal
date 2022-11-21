@@ -24,6 +24,9 @@ async function createDB(uid: string, name: string | null, email: string | null, 
             email: email,
             createdAt: serverTimestamp(),
             papers: 0,
+            totalViews: 0,
+            totalLikes: 0,
+            totalDownloads: 0,
         });
     } catch (e) {
         console.error("Error adding document: ", e);
@@ -52,7 +55,7 @@ function LoginOrSignUp() {
             <div className={styles.container2}>
                 <p>
                     <span>
-                        <img src='./icons/app_icon.png' alt='boy' />
+                        loading.
                     </span>
                     <br />
                     <Button variant="contained">
