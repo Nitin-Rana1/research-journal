@@ -18,12 +18,12 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 async function createDB(uid: string, name: string | null, email: string | null, photoURL: string | null) {
     try {
-        await setDoc(doc(db, "usersData", uid), {
+        await setDoc(doc(db, "authors", uid), {
             profilePic: photoURL,
             name: name,
             email: email,
             createdAt: serverTimestamp(),
-            papers: 0,
+            papersDocRefArr: [],
             totalViews: 0,
             totalLikes: 0,
             totalDownloads: 0,
@@ -32,13 +32,13 @@ async function createDB(uid: string, name: string | null, email: string | null, 
         console.error("Error adding document: ", e);
     }
 }
-function LoginOrSignUp() {
+function LoginOrSignUp({ handleSubmitPageButton }: { handleSubmitPageButton: () => void }) {
     const [user, loading, error] = useAuthState(auth);
     const [userData, setuserData] = useState<DocumentData | null>(null);
     async function logIn() {
         const userCred = await signInWithPopup(auth, new GoogleAuthProvider());
-        const docRef = doc(db, "usersData", userCred.user.uid);
-        const docSnap = await getDoc(docRef);
+        const authorRef = doc(db, "authors", userCred.user.uid);
+        const docSnap = await getDoc(authorRef);
         if (docSnap.exists()) {
             setuserData(docSnap.data());
         } else {
@@ -53,15 +53,11 @@ function LoginOrSignUp() {
     if (loading) {
         return (
             <div className={styles.container2}>
-                <p>
-                    <span>
-                        loading.
-                    </span>
-                    <br />
-                    <Button variant="contained">
-                        Loading.....
-                    </Button>
-                </p>
+
+                <Button variant="contained">
+                    Loading.....
+                </Button>
+
             </div>
         );
     }
@@ -76,7 +72,7 @@ function LoginOrSignUp() {
         return (
             <div>
                 {/* <HomePage userUid={user.uid} /> */}
-                <User />
+                <User handleSubmitPageButton={handleSubmitPageButton} />
             </div>
         );
     }

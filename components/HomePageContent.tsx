@@ -7,7 +7,8 @@ function HomePageContent({ handleSubmitPageButton }: any) {
     <main className={styles.mainSection}>
       <h1>Call For Work</h1>
       <div className={styles.buttonDiv}>
-        <Button onClick={handleSubmitPageButton} variant="contained" sx={{ backgroundColor: "#082691", padding: "1em 3em" }}>Submit Journal</Button>
+        <Button onClick={handleSubmitPageButton} variant="contained">
+          Submit Journal</Button>
       </div>
       <AboutTheJournal />
       {/* <article className={styles.basicArticle}>

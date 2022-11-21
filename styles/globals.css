@@ -35,14 +35,14 @@ a {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   body {
-    font-size: 1.1em;
+    font-size: 1.05em;
   }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   body {
-    font-size: 1.2em;
+    font-size: 1.15em;
   }
 }
 

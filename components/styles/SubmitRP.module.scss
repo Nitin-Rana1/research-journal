@@ -1,6 +1,52 @@
 .main {
-  // background-color: coral;
   padding: 2em;
+  display: grid;
+
+  .modal {
+    background-color: red;
+    display: grid;
+    justify-content: center;
+  }
+
+  h3 {
+    display: grid;
+    justify-content: center;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.2em;
+  }
+
+  .previewImgHolder {
+    padding: 2em;
+    display: flex;
+    justify-content: space-around;
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .previewImg {
+      position: relative;
+      height: 10em;
+      width: 10em;
+    }
+  }
+
+  .alert {
+    min-height: 4em;
+    padding-bottom: 1em;
+  }
+
+  .submitButton {
+    justify-content: center;
+    padding: 2em 0;
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */

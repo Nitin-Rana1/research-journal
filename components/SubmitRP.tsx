@@ -1,73 +1,239 @@
-import { Button, TextField } from "@mui/material";
+import { Alert, Box, Button, Divider, Modal, TextField, Typography } from "@mui/material";
 import { ChangeEventHandler, useEffect, useState } from "react";
 import styles from "./styles/SubmitRP.module.scss"
 import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { nanoid } from "nanoid";
-import { setDoc, doc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { title } from "process";
+import { setDoc, doc, DocumentData, onSnapshot, updateDoc, arrayUnion } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { storage, db, auth } from "../fireb/firebApp";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Image from "next/image";
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: '#17495f',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  color: "white",
+};
 
 function SubmitRP({ handleloginOrSignUpButton }: { handleloginOrSignUpButton: () => void }) {
   const [rpTitle, setRpTitle] = useState("");
   const [file, setFile] = useState<null | File>(null);
-  const [uploadFileUrl, setUploadFileUrl] = useState<null | string>(null);
+  const [imgFile, setImgFile] = useState<null | File>(null);
+  // const [coverImgUrl, setCoverImgUrl] = useState<null | string>(null);
+  // const [uploadFileUrl, setUploadFileUrl] = useState<null | string>(null);
+  const [previewImgUrl, setPreviewImgUrl] = useState<string | ArrayBuffer | null>(null);
   const [user, loading, error] = useAuthState(auth);
-  const [loadTxt, setLoadTxt] = useState("nothing");
+  const [userData, setuserData] = useState<DocumentData | null | undefined>(null);
+  const [emptyField, setEmptyField] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [fileProgress, setFileProgress] = useState<number>(0);
+  const [imgProgress, setImgProgress] = useState<number>(0);
+  useEffect(() => {
+    if (user) {
+
+      const unsub = onSnapshot(doc(db, "authors", user!.uid), (doc) => {
+        setuserData(doc.data());
+        console.log(doc.data());
+      });
+    }
+  }, []);
 
   const handleImgInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.files && e.target.files.length != 0) {
+      setImgFile(e.target.files[0]);
+
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+      fileReader.addEventListener("load", function () {
+        setPreviewImgUrl(this.result);
+      });
+    }
+    setEmptyField(false);
+  }
+  const handleFileInput: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (e.target.files && e.target.files.length != 0) {
       setFile(e.target.files[0]);
     }
-    // const fileReader = new FileReader();
-    // fileReader.readAsDataURL(e.target.files[0]);
-    // fileReader.addEventListener("load", function () {
-    //   setPrevImgUrl(this.result);
-    // });
+    setEmptyField(false);
   }
-  async function submit() {
-    if (!file) return;
-    setLoadTxt("Loading");
+
+  async function handleSubmit() {
+    if (!file || !imgFile || rpTitle == "") {
+      setEmptyField(true);
+      return;
+    }
+    setSubmitting(true);
+    setEmptyField(false);
+
     let uuid = nanoid();
-    setLoadTxt(uuid);
-    const fileRef = ref(storage, uuid);
-    setLoadTxt("reference created!");
-    await uploadBytes(fileRef, file);
-    setLoadTxt("img uploaded ");
-    const urll = await getDownloadURL(fileRef);
-    setLoadTxt("img url downloaded ");
-    setUploadFileUrl(urll);
-    await setDoc(doc(db, "plans", uuid), {
-      title: title,
-      fileUrl: uploadFileUrl,
+    let authorWorkUuid = nanoid();
+
+    let path = authorWorkUuid + "/" + uuid;
+    const fileRef = ref(storage, path);
+    // await uploadBytes(fileRef, file);
+    // const urll = await getDownloadURL(fileRef);
+    let urll = "";
+
+    ///try
+    const uploadTask = uploadBytesResumable(fileRef, file);
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+
+        setFileProgress(progress);
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          urll = downloadURL;
+        });
+      }
+    );
+
+    ///try
+
+
+    //cover image
+    let uuid2 = nanoid();
+    path = authorWorkUuid + "/" + uuid2;
+    const imgRef = ref(storage, path);
+    // await uploadBytes(imgRef, imgFile);
+    // const urll2 = await getDownloadURL(imgRef);
+    let urll2 = "";
+    ///try2
+    const uploadTask2 = uploadBytesResumable(imgRef, imgFile);
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        let progress2 = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+
+        setImgProgress(progress2);
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          urll2 = downloadURL;
+        });
+      }
+    );
+
+    ///try2
+
+
+    // setCoverImgUrl(urll2);
+    await setDoc(doc(db, "authorswork", authorWorkUuid), {
+      title: rpTitle,
+      fileUrl: urll,
+      bookCover: urll2,
+      likes: 0,
+      downloads: 0,
     });
-    setLoadTxt("data set!!");
-    setLoadTxt("loading complete");
+    const authorsRef = doc(db, "authors", user!.uid);
+    await updateDoc(authorsRef, {
+      papersDocRefArr: arrayUnion(authorWorkUuid),
+    });
+    setSubmitting(false);
   }
+
   if (!user) {
     handleloginOrSignUpButton();
-    return <div></div>
-  } else {
-    return (
-      <main className={styles.main}>
-        {loadTxt}
-        <div>
-          <TextField onChange={(e) => { setRpTitle(e.currentTarget.value) }} id="outlined-basic" label="Title" variant="outlined" value={rpTitle} focused />
-        </div>
-        <br />
-        {/* <div>
-        <TextField onChange={(e) => { setLink(e.currentTarget.value) }} id="outlined-basic" label="Google Drive Link" variant="outlined" value={link} />
-      </div>
-      <h5>OR</h5> */}
-        <Button variant="contained" component="label" endIcon={<PictureAsPdfIcon />}>
-          Upload
-          <input hidden accept=".pdf" multiple type="file" onChange={handleImgInput} />
-        </Button>
-        <Button variant="contained" >Submit</Button>
-      </main>
-    )
+    return (<div></div>)
   }
+  return (
+    <main className={styles.main}>
+      <div className={styles.modal}>
+        <Modal
+          open={submitting}
+          onClose={() => { }}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Uploading Files...
+              <div>
+                Research Paper: {fileProgress}%
+              </div>
+              <div>
+                Cover Photo: {imgProgress}%
+              </div>
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Maybe this is starting of something big!!
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
+      <h3>Submit Your Paper</h3>
+      <div className={styles.alert}>
+        {emptyField && <Alert severity="error">Fill All The Fields</Alert>}
+      </div>
+      <div className={styles.row}>
+        <span>Research Paper Title:</span>
+        <TextField onChange={(e) => { setEmptyField(false); setRpTitle(e.currentTarget.value) }} id="outlined-basic" label="Paper Title" variant="outlined" value={rpTitle} />
+      </div>
+      <div className={styles.row}>
+        <span>
+          Paper&apos;s Cover Photo:
+        </span>
+        <Button variant="outlined" component="label" endIcon={<PictureAsPdfIcon />}>
+          Paper Cover
+          <input hidden accept="image/*" type="file" onChange={handleImgInput} />
+        </Button>
+      </div>
+      <div className={styles.row}>
+        <span>Reseach Paper:</span>
+        <Button variant="outlined" component="label" endIcon={<PictureAsPdfIcon />}>
+          Research Paper
+          <input hidden accept=".pdf" type="file" onChange={handleFileInput} />
+        </Button>
+      </div>
+      <div className={`${styles.row} ${styles.submitButton}`}>
+        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+      </div>
+      <Divider>Preview Paper</Divider>
+      <div className={styles.previewImgHolder}>
+        <span>{rpTitle == "" ? "Your Paper Title" : rpTitle}</span>
+        <div className={styles.previewImg}>
+          {typeof previewImgUrl == 'string' ? <Image src={previewImgUrl} fill alt="Preview Image" />
+            : <Image src="/logo.png" alt="Preview Image" fill />}
+        </div>
+      </div>
+    </main>
+  )
 }
+
 export default SubmitRP;

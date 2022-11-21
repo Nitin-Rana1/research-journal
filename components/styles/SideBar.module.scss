@@ -2,6 +2,7 @@
   display: grid;
   place-items: center;
   width: 100%;
+
   div {
     border-top: 1px solid black;
     box-sizing: border-box;
@@ -14,16 +15,29 @@
 
 .sidebar {
   border-left: 1px solid #ddd;
-  margin-top: 2em;
+  border-top: 1px solid #ddd;
+
+  padding-top: 2em;
   display: flex;
   justify-content: center;
+
+
   article {
     // display: grid;
     padding: 0em 2em;
   }
-  .blueButtonGroup{
+
+  .blueButtonGroup {
     display: grid;
-    .blueButton{
+
+    .submitButton {
+      margin-bottom: 2em;
+      padding: 1em;
+      padding-right: 2.5em;
+      padding-left: 2.5em;
+    }
+
+    .blueButton {
       margin-bottom: 2em;
       padding-right: 2em;
       padding-left: 2em;
@@ -36,7 +50,8 @@
       width: clamp(50vw, 55vw, 60vw);
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
-    .plainButton{
+
+    .plainButton {
       margin-bottom: 1.5em;
       // color: #000000;
       // border-color: #000000;
@@ -48,27 +63,31 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
-}
+@media only screen and (max-width: 600px) {}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .plainButton, .blueButton{
+
+  .plainButton,
+  .blueButton {
     max-width: 35vw;
-  } 
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .plainButton, .blueButton{
+
+  .plainButton,
+  .blueButton {
     max-width: 30vw;
-  } 
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .blueButton, .plainButton{
+
+  .blueButton,
+  .plainButton {
     max-width: 20vw;
   }
 }

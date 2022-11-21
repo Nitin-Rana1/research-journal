@@ -21,9 +21,10 @@
 }
 
 .container2 {
-    height: 20vh;
-    width: 20vw;
-    background-color: coral;
+    min-height: 50vh;
+    min-width: 50vw;
+    display: grid;
+    justify-content: center;
 }
 
 /* Extra small devices (phones, 600px and down) */

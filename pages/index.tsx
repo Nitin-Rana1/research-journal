@@ -198,10 +198,10 @@ const Home: NextPage = () => {
         {editoryPolicy && <EditoryPolicy part={editoryPolicyMenu} />}
         {currentIssue && <CurrentIssue />}
         {aboutUs && <AboutUs part={aboutUsMenu} />}
-        {loginOrSignUp && <LoginOrSignUp />}
+        {loginOrSignUp && <LoginOrSignUp handleSubmitPageButton={handleSubmitPageButton} />}
         {submitRP && <SubmitRP handleloginOrSignUpButton={handleLoginOrSignUpButton} />}
         {homePageContent && <HomePageContent handleSubmitPageButton={handleSubmitPageButton} />}
-        <SideBar />
+        <SideBar handleSubmitPageButton={handleSubmitPageButton} />
       </main>
       <Footer />
     </div>
