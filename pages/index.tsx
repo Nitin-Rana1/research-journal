@@ -14,39 +14,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { Fragment, useState } from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
-import LoginOrSignUp from "../components/LoginOrSignUp";
-import AboutUs from '../components/AboutUs/AboutUs';
-import EditoryPolicy from '../components/EditorialPolicy/EditoryPolicy';
-import CurrentIssue from '../components/CurrentIssue';
+import LoginOrSignUp from "../components/LoginAndUser/LoginOrSignUp";
+import AboutUs from '../components/AboutUs/AboutUsC';
+import EditoryPolicy from '../components/EditorialPolicy/EditoryPolicyC';
+import CurrentIssueC from '../components/CurrentIssueC';
 
 import { auth } from "../fireb/firebApp";
 import { signOut } from "firebase/auth";
+import Link from 'next/link';
 
 const Home: NextPage = () => {
-  //different pages
-  const [homePageContent, setHomePageContent] = useState(true);
-  const [submitRP, setSubmitRP] = useState(false);
-  const [loginOrSignUp, setLoginOrSignUp] = useState(false);
-  const [aboutUs, setAboutUs] = useState(false);
-  const [aboutUsMenu, setAboutUsMenu] = useState(0);
-
-  const [editoryPolicy, setEditoryPolicy] = useState(false);
-  const [editoryPolicyMenu, setEditoryPolicyMenu] = useState(0);
-
-  const [currentIssue, setCurrentIssue] = useState(false);
-
-
-  const setAllMainSectionFalse = () => {
-    setHomePageContent(false);
-    setSubmitRP(false);
-    setLoginOrSignUp(false);
-    setAboutUs(false);
-    setEditoryPolicy(false);
-    setCurrentIssue(false);
-  }
-
   const [drawerState, setDrawerState] = useState(false);
-
   const toggleDrawer = (open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -62,21 +40,23 @@ const Home: NextPage = () => {
     <Box
       sx={{ width: 250 }}
       role="presentation"
-      // onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {/* {['Home', 'Current Issue', 'Editorial Policy', 'About Us', 'Sign In/ Up', 'Log Out'].map((text, index) => ( */}
         <div onClick={toggleDrawer(false)}>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText onClick={handleHomePageButton} primary="Home" />
-            </ListItemButton>
+            <Link href="/">
+              <ListItemButton>
+                <ListItemText primary="Home" />
+              </ListItemButton>
+            </Link>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText onClick={handleCurrentIssuePageButton} primary="Current Issue" />
-            </ListItemButton>
+            <Link href="/current-issue">
+              <ListItemButton>
+                <ListItemText primary="Current Issue" />
+              </ListItemButton>
+            </Link>
           </ListItem>
         </div>
 
@@ -94,11 +74,12 @@ const Home: NextPage = () => {
               <List onClick={toggleDrawer(false)} >
                 {["Publication Ethics", "Open Access Policy", "Peer-review Policy", "Digital prevention Policy", "Plagiarism Policy", "Journal Policy", "Repository Policy", "Copy Right Policy"].map((value, i) => {
                   return (
-
                     <ListItem key={i} onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
-                      <ListItemButton>
-                        <ListItemText onClick={() => handleEditoryPolicyPageButton(i)} primary={value} />
-                      </ListItemButton>
+                      <Link href="/editory-policy">
+                        <ListItemButton>
+                          <ListItemText primary={value} />
+                        </ListItemButton>
+                      </Link>
                     </ListItem>
                   )
                 })}
@@ -121,9 +102,11 @@ const Home: NextPage = () => {
                   return (
 
                     <ListItem key={i} onClick={toggleDrawer(false)} className={styles.editoryPolicyMenu}>
-                      <ListItemButton>
-                        <ListItemText onClick={() => handleAboutUsPageButton(i)} primary={value} />
-                      </ListItemButton>
+                      <Link href="/about-us">
+                        <ListItemButton>
+                          <ListItemText primary={value} />
+                        </ListItemButton>
+                      </Link>
                     </ListItem>
                   )
                 })}
@@ -135,9 +118,11 @@ const Home: NextPage = () => {
 
 
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText onClick={handleLoginOrSignUpButton} primary="Sign In/Up" />
-            </ListItemButton>
+            <Link href="/login-signup">
+              <ListItemButton>
+                <ListItemText primary="Sign In/Up" />
+              </ListItemButton>
+            </Link>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
@@ -149,34 +134,6 @@ const Home: NextPage = () => {
       </List >
     </Box >
   );
-
-  //Page navigation
-  function handleHomePageButton() {
-    setAllMainSectionFalse();
-    setHomePageContent(true);
-  }
-  const handleLoginOrSignUpButton = () => {
-    setAllMainSectionFalse();
-    setLoginOrSignUp(true);
-  }
-  function handleSubmitPageButton() {
-    setAllMainSectionFalse();
-    setSubmitRP(true);
-  }
-  function handleAboutUsPageButton(i: number) {
-    setAllMainSectionFalse();
-    setAboutUsMenu(i);
-    setAboutUs(true);
-  }
-  function handleEditoryPolicyPageButton(i: number) {
-    setAllMainSectionFalse();
-    setEditoryPolicyMenu(i);
-    setEditoryPolicy(true);
-  }
-  function handleCurrentIssuePageButton() {
-    setAllMainSectionFalse();
-    setCurrentIssue(true);
-  }
   function handleLogOut() {
     signOut(auth);
   }
@@ -193,19 +150,14 @@ const Home: NextPage = () => {
         </Drawer>
       </Fragment>
 
-      <Header toggleDrawer={toggleDrawer} handleloginOrSignUpButton={handleLoginOrSignUpButton} handleHomePageButton={handleHomePageButton} handleAboutUsPageButton={handleAboutUsPageButton} handleCurrentIssuePageButton={handleCurrentIssuePageButton} handleEditoryPolicyPageButton={handleEditoryPolicyPageButton} handleLogOut={handleLogOut} />
+      <Header toggleDrawer={toggleDrawer} />
       <main className={styles.main}>
-        {editoryPolicy && <EditoryPolicy part={editoryPolicyMenu} />}
-        {currentIssue && <CurrentIssue />}
-        {aboutUs && <AboutUs part={aboutUsMenu} />}
-        {loginOrSignUp && <LoginOrSignUp handleSubmitPageButton={handleSubmitPageButton} />}
-        {submitRP && <SubmitRP handleloginOrSignUpButton={handleLoginOrSignUpButton} />}
-        {homePageContent && <HomePageContent handleSubmitPageButton={handleSubmitPageButton} />}
-        <SideBar handleSubmitPageButton={handleSubmitPageButton} />
+        <HomePageContent />
+        <SideBar />
       </main>
       <Footer />
     </div>
   )
 }
 
-export default Home
+export default Home;

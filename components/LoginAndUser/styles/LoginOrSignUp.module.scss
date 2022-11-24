@@ -23,8 +23,9 @@
 .container2 {
     min-height: 50vh;
     min-width: 50vw;
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 /* Extra small devices (phones, 600px and down) */

@@ -1,5 +1,5 @@
 import styles from "./EditoryPolicy.module.scss";
-function EditoryPolicy({ part }: any) {
+function EditoryPolicyC({ part }: any) {
     return (
         <main className={styles.main}>
             <h3>
@@ -39,4 +39,4 @@ function EditoryPolicy({ part }: any) {
         </main>
     )
 }
-export default EditoryPolicy;
+export default EditoryPolicyC;

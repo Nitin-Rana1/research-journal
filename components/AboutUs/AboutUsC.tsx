@@ -2,7 +2,7 @@ import styles from "./AboutUs.module.scss";
 import AboutTheJournal from "./AboutTheJournal";
 import FocusAndScope from "./FocusAndScope";
 import EditorialTeam from "./EditorialTeam";
-function AboutUs({ part }: any) {
+function AboutUsC({ part = 1 }: any) {
     return (
         <main className={styles.main}>
             {part === 0 && <AboutTheJournal />}
@@ -11,4 +11,4 @@ function AboutUs({ part }: any) {
         </main>
     )
 }
-export default AboutUs;
+export default AboutUsC;

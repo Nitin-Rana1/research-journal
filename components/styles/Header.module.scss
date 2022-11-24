@@ -7,6 +7,7 @@
 
   .headerContent {
     position: relative;
+    background-image: url("/header.png");
     background-color: #9fb3f9;
     font-size: 1em;
     padding: 1em 2.5em 3em 2.5em;
@@ -24,6 +25,8 @@
     h5 {
       font-size: 0.7em;
     }
+
+
 
     nav {
       display: none;

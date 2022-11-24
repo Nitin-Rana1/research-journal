@@ -41,6 +41,16 @@
 
 }
 
+.authorswork {
+    .bookCover {
+        position: relative;
+        width: 5em;
+        height: 5em;
+    }
+
+    overflow-x: hidden;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {}
 

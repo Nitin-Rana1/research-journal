@@ -4,7 +4,7 @@ import {
     signInWithPopup,
     signOut,
 } from "firebase/auth";
-import { auth, db } from "../fireb/firebApp";
+import { auth, db } from "../../fireb/firebApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 //   import HomePage from "../component/homePage";
 import { useState, useEffect } from "react";
@@ -32,7 +32,7 @@ async function createDB(uid: string, name: string | null, email: string | null, 
         console.error("Error adding document: ", e);
     }
 }
-function LoginOrSignUp({ handleSubmitPageButton }: { handleSubmitPageButton: () => void }) {
+function LoginOrSignUp() {
     const [user, loading, error] = useAuthState(auth);
     const [userData, setuserData] = useState<DocumentData | null>(null);
     async function logIn() {
@@ -54,7 +54,7 @@ function LoginOrSignUp({ handleSubmitPageButton }: { handleSubmitPageButton: () 
         return (
             <div className={styles.container2}>
 
-                <Button variant="contained">
+                <Button variant="outlined">
                     Loading.....
                 </Button>
 
@@ -63,8 +63,10 @@ function LoginOrSignUp({ handleSubmitPageButton }: { handleSubmitPageButton: () 
     }
     if (error) {
         return (
-            <div>
-                <p>Sorry :</p>
+            <div className={styles.container2}>
+                <Button variant="outlined">
+                    Sorry page down.....
+                </Button>
             </div>
         );
     }
@@ -72,7 +74,7 @@ function LoginOrSignUp({ handleSubmitPageButton }: { handleSubmitPageButton: () 
         return (
             <div>
                 {/* <HomePage userUid={user.uid} /> */}
-                <User handleSubmitPageButton={handleSubmitPageButton} />
+                <User />
             </div>
         );
     }

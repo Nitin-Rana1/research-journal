@@ -1,3 +1,12 @@
+.loadingScreen,
+.errorScreen {
+  min-height: 50vh;
+  min-width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main {
   padding: 2em;
   display: grid;
@@ -60,7 +69,10 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .main {
+
+  .main,
+  .loadingScreen,
+  .errorScreen {
     min-width: 60vw;
     max-width: 60vw;
   }

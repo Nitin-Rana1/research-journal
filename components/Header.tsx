@@ -6,10 +6,13 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { auth } from "../fireb/firebApp";
+import { signOut } from "firebase/auth";
 
-function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
-  handleAboutUsPageButton, handleCurrentIssuePageButton,
-  handleEditoryPolicyPageButton, handleLogOut }: any) {
+//infix to postfix using stack
+
+function Header({ toggleDrawer }: any) {
   const [anchorElEdit, setAnchorElEdit] = useState<null | HTMLElement>(null);
   const [anchorElAbout, setAnchorElAbout] = useState<null | HTMLElement>(null);
 
@@ -28,14 +31,16 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
   const handleCloseAbout = () => {
     setAnchorElAbout(null);
   };
-
+  function handleLogOut() {
+    signOut(auth);
+  }
   return (
     <header className={styles.header}>
 
       <div className={styles.headerContent}>
-        <div className={styles.logoIcon}>
+        {/* <div className={styles.logoIcon}>
           <Image src="/logo.png" fill alt="logoPic" />
-        </div>
+        </div> */}
         <h3 className={styles.headerTitle}>
           Graphic Era Department of Science and Journal
         </h3>
@@ -43,17 +48,23 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
           Established to help students in their Research<br />
           <b>Transforming Dreams into Reality</b>
         </h5>
-        <nav onClick={handleloginOrSignUpButton}>
-          <span>Register</span>
-          <span>Log In</span>
-        </nav>
+        <Link href="/login-signup">
+          <nav>
+            <span>Register</span>
+            <span>Log In</span>
+          </nav>
+        </Link>
       </div>
       <nav className={styles.nav}>
         <span className={styles.icon}>
           <MenuIcon onClick={toggleDrawer(true)} />
         </span>
-        <Button onClick={handleHomePageButton} className={styles.menus} variant="text">Home</Button>
-        <Button onClick={handleCurrentIssuePageButton} className={styles.menus} variant="text">Current Issue</Button>
+        <Link href="/">
+          <Button className={styles.menus} variant="text">Home</Button>
+        </Link>
+        <Link href="/current-issue">
+          <Button className={styles.menus} variant="text">Current Issue</Button>
+        </Link>
         <div className={styles.menus}>
           <Button
             id="basic-button"
@@ -76,7 +87,9 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
           >
             {["Publication Ethics", "Open Access Policy", "Peer-review Policy", "Digital prevention Policy", "Plagiarism Policy", "Journal Policy", "Repository Policy", "Copy Right Policy"].map((value, i) => {
               return (
-                <MenuItem key={i} onClick={() => { handleCloseEdit(); handleEditoryPolicyPageButton(i) }}>{value}</MenuItem>
+                <Link key={i} href="/editory-policy">
+                  <MenuItem onClick={() => { handleCloseEdit() }}>{value}</MenuItem>
+                </Link>
               )
             })}
           </Menu>
@@ -104,16 +117,17 @@ function Header({ toggleDrawer, handleloginOrSignUpButton, handleHomePageButton,
           >
             {["About The Journal", "Focus & Scope", "Editorial Team"].map((value, i) => {
               return (
-                <MenuItem key={i} onClick={() => { handleCloseAbout(); handleAboutUsPageButton(i) }}>{value}</MenuItem>
+                <Link key={i} href="/about-us">
+                  <MenuItem onClick={() => { handleCloseAbout() }}>{value}</MenuItem>
+                </Link>
               )
             })}
           </Menu>
         </div>
-
-        <Button onClick={handleloginOrSignUpButton} className={styles.menus} variant="text">Sign In/Up</Button>
+        <Link href="/login-signup">
+          <Button className={styles.menus} variant="text">Sign In/Up</Button>
+        </Link>
         <Button onClick={handleLogOut} className={styles.menus} variant="text">Log Out</Button>
-
-
       </nav>
     </header>
   )

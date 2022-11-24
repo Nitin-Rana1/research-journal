@@ -22,7 +22,6 @@ function AboutTheJournal({ part }: any) {
                     "Number of papers-3"].map((val, i) => {
                         return (
                             <li key={i}>
-                                {/* <b>{i + 1}:</b>  */}
                                 {val}
                             </li>
                         )
