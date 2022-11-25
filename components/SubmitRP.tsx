@@ -81,7 +81,7 @@ function SubmitRP() {
     let uuid = nanoid();
     let authorWorkUuid = nanoid();
 
-    let path = user!.uid + authorWorkUuid + "/" + uuid;
+    let path = user!.uid + "/" + authorWorkUuid + "/" + uuid;
     const fileRef = ref(storage, path);
     // await uploadBytes(fileRef, file);
     // const urll = await getDownloadURL(fileRef);
@@ -122,7 +122,7 @@ function SubmitRP() {
 
     //cover image
     let uuid2 = nanoid();
-    path = user!.uid + authorWorkUuid + "/" + uuid2;
+    path = user!.uid + "/" + authorWorkUuid + "/" + uuid2;
     const imgRef = ref(storage, path);
     // await uploadBytes(imgRef, imgFile);
     // const urll2 = await getDownloadURL(imgRef);

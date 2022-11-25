@@ -29,7 +29,13 @@ function AuthorsWork({ authorId, papersDocRefArr }: { authorId: string, papersDo
     }, []);
 
     function downloadThisUrl(fileUrl: string): void {
-
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = (event) => {
+            const blob = xhr.response;
+        };
+        xhr.open('GET', fileUrl);
+        xhr.send();
     }
 
     return (<main className={styles.authorswork}>
