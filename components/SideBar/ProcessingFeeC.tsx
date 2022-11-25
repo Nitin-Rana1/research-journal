@@ -6,7 +6,7 @@ function ProcessingFeeC() {
 
                 The GEHU Publisher is an open-source journal. Open Source allows any reader to view, download,
                 and redistribute any article without any subscription, enabling far
-                greater distribution of an author's work than the traditional subscription-based publishing model.
+                greater distribution of an author&apso;s work than the traditional subscription-based publishing model.
 
             </p>
             <p>
@@ -29,7 +29,7 @@ function ProcessingFeeC() {
 
 
                 PayPal is the safer, easier way to pay. You can use your credit card (including Visa, MasterCard,
-                American Express, Discover, JCB, Diner's Club, and EnRoute.) without exposing your account numbers.
+                American Express, Discover, JCB, Diner&apso;s Club, and EnRoute.) without exposing your account numbers.
                 PayPal is available in 203 countries around the world; check your country using the following link here
 
                 2.  International Fund transfer (WIRE)  from any bank using SWIFT (Account details contact ED office).

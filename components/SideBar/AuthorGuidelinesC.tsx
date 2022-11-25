@@ -60,8 +60,8 @@ function AuthorGuidelinesC() {
                 b. The total length of the paper, including references and appendices, must not exceed
                 (20) A4  Size pages. It should be typed on one-side with a single column, 1.15-line spacing,
                 10 font size, Times New Roman, in MS Word (.doc/.docx).
-                c. To avoid unnecessary errors, the authors are strongly advised to use the "spell-check"
-                and "grammar-check" functions of the word processor.
+                c. To avoid unnecessary errors, the authors are strongly advised to use the spell-check
+                and grammar-check functions of the word processor.
                 d. The author should be typed references in single-line spacing, 10 font size.
                 e. Complete author&apos;s  profile with clear photographs
                 f. The complete template has been prepared and is available at: “Paper Template”.
