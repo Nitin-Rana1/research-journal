@@ -1,5 +1,5 @@
 import styles from "./SideBarCombine.module.scss";
-function Policies() {
+function PoliciesC() {
     return (
         <main className={styles.policies}>
             <h3>
@@ -39,4 +39,4 @@ function Policies() {
         </main>
     )
 }
-export default Policies;
+export default PoliciesC;

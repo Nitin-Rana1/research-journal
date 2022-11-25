@@ -17,13 +17,13 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, List, List
 import LoginOrSignUp from "../components/LoginAndUser/LoginOrSignUp";
 import AboutUs from '../components/AboutUs/AboutUsC';
 import EditoryPolicy from '../components/EditorialPolicy/EditoryPolicyC';
-import Policies from "../components/SideBar/Policies";
+import PoliciesC from "../components/SideBar/PoliciesC";
 
 import { auth } from "../fireb/firebApp";
 import { signOut } from "firebase/auth";
 import Link from 'next/link';
 
-const policies: NextPage = () => {
+const Policies: NextPage = () => {
     const [drawerState, setDrawerState] = useState(false);
     const toggleDrawer = (open: boolean) =>
         (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -160,4 +160,4 @@ const policies: NextPage = () => {
     )
 }
 
-export default policies;
+export default Policies;
