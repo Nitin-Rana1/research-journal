@@ -129,7 +129,7 @@ function SubmitRP() {
 
     ///try2
     const uploadTask2 = uploadBytesResumable(imgRef, imgFile);
-    uploadTask.on('state_changed',
+    uploadTask2.on('state_changed',
       (snapshot) => {
         let progress2 = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 
@@ -149,7 +149,7 @@ function SubmitRP() {
       async () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        await getDownloadURL(uploadTask2.snapshot.ref).then((downloadURL) => {
           console.log('image available at', downloadURL);
           imgFirebaseUrl = downloadURL;
         });

@@ -29,6 +29,7 @@ function AuthorsWork({ authorId, papersDocRefArr }: { authorId: string, papersDo
     }, []);
 
     function downloadThisUrl(fileUrl: string): void {
+        console.log("donwload url", fileUrl);
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'blob';
         xhr.onload = (event) => {
@@ -42,14 +43,19 @@ function AuthorsWork({ authorId, papersDocRefArr }: { authorId: string, papersDo
         {workDataArr.length != 0 && workDataArr.map((v, i) => {
             return (
                 <article key={i}>
-                    <h3>{v!.title}</h3>
-                    <div className={styles.bookCover}>
-                        <img alt="book Cover" src={v!.bookCover} />
-                    </div>
-                    <div>Like:  {v!.likes}</div>
-                    <div>Downloads: {v!.downloads}  </div>
-                    <div>File Link: <a href={v!.fileUrl}>clik</a></div>
-                    <Button onClick={() => downloadThisUrl(v!.fileUrl)} variant="contained">Download Paper</Button>
+                    {v && <div>
+                        <h3>{v!.title}</h3>
+                        <div className={styles.bookCover}>
+                            <img alt="book Cover" src={v!.bookCover} />
+                        </div>
+                        <div>Like:  {v!.likes}</div>
+                        <div>Downloads: {v!.downloads}  </div>
+                        <a target="_blank" href={v!.fileUrl} rel="noopener noreferrer">
+                            <Button variant="contained">
+                                Open Papers
+                            </Button>
+                        </a>
+                    </div>}
 
                 </article>
             )
