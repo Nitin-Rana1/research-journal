@@ -152,7 +152,7 @@ const Policies: NextPage = () => {
 
             <Header toggleDrawer={toggleDrawer} />
             <main className={styles.main}>
-                <Policies />
+                <PoliciesC />
                 <SideBar />
             </main>
             <Footer />
