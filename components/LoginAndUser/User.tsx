@@ -46,9 +46,9 @@ function User() {
                 {userData && (
                     <>
                         <div className={styles.imgHolder}>
-
-                            {/* <Image fill src={userData.profilePic} alt='profilepic' /> */}
-                            <img src={userData.profilePic} alt="profilePic" />
+                            <div className={styles.img}>
+                                <Image fill src={userData.profilePic} alt='profilepic' />
+                            </div>
                         </div>
                         <article className={styles.info}>
                             <div>

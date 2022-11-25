@@ -2,8 +2,12 @@ import { onSnapshot, doc, DocumentData } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../fireb/firebApp";
 import styles from "./styles/User.module.scss";
-import Image from "next/image";
 import { Button } from "@mui/material";
+import Image from "next/image";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { ThumbUpSharp } from "@mui/icons-material";
+
 function AuthorsWork({ authorId, papersDocRefArr }: { authorId: string, papersDocRefArr: string[] }) {
     const [workDataArr, setWorkDataArr] = useState<(DocumentData | undefined)[]>([]);
     const [showWork, setShowWork] = useState(false);
@@ -44,19 +48,23 @@ function AuthorsWork({ authorId, papersDocRefArr }: { authorId: string, papersDo
             return (
                 <article key={i}>
                     {v && <div>
-                        <h3>{v!.title}</h3>
-                        <div className={styles.bookCover}>
-                            <img alt="book Cover" src={v!.bookCover} />
+                        <h3>{v.title}</h3>
+                        <div className={styles.imgAndDesc}>
+
+                            <div className={styles.bookCover}>
+                                <Image src={v.bookCover} alt="book Cover" fill />
+                            </div>
+                            <div>{v.desc}</div>
                         </div>
-                        <div>Like:  {v!.likes}</div>
-                        <div>Downloads: {v!.downloads}  </div>
-                        <a target="_blank" href={v!.fileUrl} rel="noopener noreferrer">
+                        <div>Like:  {v.likes} <ThumbUpIcon /></div>
+                        <div>Downloads: {v.downloads}  </div>
+                        <a target="_blank" href={v.fileUrl} rel="noopener noreferrer">
                             <Button variant="contained">
                                 Open Papers
                             </Button>
                         </a>
+                        <Button><DeleteIcon sx={{ color: 'red' }} /></Button>
                     </div>}
-
                 </article>
             )
         })}

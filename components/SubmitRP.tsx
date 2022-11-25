@@ -27,6 +27,7 @@ const style = {
 
 function SubmitRP() {
   const [rpTitle, setRpTitle] = useState("");
+  const [desc, setDesc] = useState("");
   const [file, setFile] = useState<null | File>(null);
   const [imgFile, setImgFile] = useState<null | File>(null);
   // const [coverImgUrl, setCoverImgUrl] = useState<null | string>(null);
@@ -71,7 +72,7 @@ function SubmitRP() {
   }
 
   async function handleSubmit() {
-    if (!file || !imgFile || rpTitle == "") {
+    if (!file || !imgFile || rpTitle == "" || desc == "") {
       setEmptyField(true);
       return;
     }
@@ -159,6 +160,7 @@ function SubmitRP() {
 
         await setDoc(doc(db, "authorswork", authorWorkUuid), {
           title: rpTitle,
+          desc: desc,
           fileUrl: fileFirebaseUrl,
           bookCover: imgFirebaseUrl,
           likes: 0,
@@ -217,7 +219,6 @@ function SubmitRP() {
                 </div>
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Maybe this is starting of something big!!
               </Typography>
             </Box>
           </Modal>
@@ -229,6 +230,10 @@ function SubmitRP() {
         <div className={styles.row}>
           <span>Research Paper Title:</span>
           <TextField onChange={(e) => { setEmptyField(false); setRpTitle(e.currentTarget.value) }} id="outlined-basic" label="Paper Title" variant="outlined" value={rpTitle} />
+        </div>
+        <div className={styles.row}>
+          <span>Paper Description:</span>
+          <TextField onChange={(e) => { setEmptyField(false); setDesc(e.currentTarget.value) }} id="outlined-basic" label="Paper Description" variant="outlined" value={desc} />
         </div>
         <div className={styles.row}>
           <span>

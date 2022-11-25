@@ -21,20 +21,33 @@
     .imgHolder {
         display: flex;
         justify-content: center;
-        padding: 1.5em;
+        padding-bottom: 2em;
+
+        .img {
+
+            position: relative;
+            padding: 1.5em;
+            height: 10em;
+            width: 10em;
+        }
+
     }
 
     img {
-        width: 5.5em;
-        height: 5.5em;
         clip-path: circle(50% at 50% 50%);
     }
+
 
     .authorswork {
         div {
             position: relative;
             max-width: 100%;
             overflow-x: hidden;
+        }
+
+        .imgAndDesc {
+            display: flex;
+            justify-content: space-between;
         }
 
     }
@@ -44,8 +57,8 @@
 .authorswork {
     .bookCover {
         position: relative;
-        width: 5em;
-        height: 5em;
+        width: 7em;
+        height: 7em;
     }
 
     overflow-x: hidden;
