@@ -27,8 +27,8 @@
 
             position: relative;
             padding: 1.5em;
-            height: 10em;
-            width: 10em;
+            height: 7em;
+            width: 7em;
         }
 
     }
@@ -37,29 +37,41 @@
         clip-path: circle(50% at 50% 50%);
     }
 
-
-    .authorswork {
-        div {
-            position: relative;
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        .imgAndDesc {
-            display: flex;
-            justify-content: space-between;
-        }
-
-    }
-
 }
 
 .authorswork {
-    .bookCover {
-        position: relative;
-        width: 7em;
-        height: 7em;
+    display: grid;
+
+    h3 {
+        display: grid;
+        justify-content: center;
     }
+
+    .imgAndDesc {
+        display: flex;
+
+        position: relative;
+
+        .bookCover {
+            position: relative;
+            width: 7em;
+            height: 7em;
+            flex: 0 0 20%;
+        }
+
+        .desc {}
+    }
+
+    .likeDownload {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .deleteDownload {
+        display: flex;
+        justify-content: space-between;
+    }
+
 
     overflow-x: hidden;
 }

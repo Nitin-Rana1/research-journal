@@ -18,8 +18,6 @@ function User() {
     useEffect(() => {
         const unsub = onSnapshot(doc(db, "authors", user!.uid), (doc) => {
             setuserData(doc.data());
-            console.log("helo users");
-            console.log(doc.data());
         });
     }, []);
     if (loading) {
