@@ -11,7 +11,7 @@ export default async function handler(
   const { custId } = req.query;
   console.log("server", custId);
   const orderId = `Ord_${Date.now()}`;
-  const amount = "2000";
+  const amount = "20";
   const paytmParams: any = {};
   paytmParams.body = {
     requestType: "Payment",
