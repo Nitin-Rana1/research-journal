@@ -64,8 +64,6 @@ function AuthorsWork({
       );
     }
   }, []);
-<<<<<<< HEAD
-=======
 
   // function downloadThisUrl(fileUrl: string): void {
   //     console.log("donwload url", fileUrl);
@@ -77,7 +75,6 @@ function AuthorsWork({
   //     xhr.open('GET', fileUrl);
   //     xhr.send();
   // }
->>>>>>> pagenav
   async function handlePaperDelete(paperId: string) {
     //Database Deletes
     await deleteDoc(doc(db, "authorswork", paperId));
