@@ -13,7 +13,7 @@ import { serverTimestamp, getDoc, doc, setDoc, DocumentData } from "firebase/fir
 //   import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Button } from "@mui/material";
 // import LoadingButton from '@mui/lab/LoadingButton';
-import User from "./User";
+import UserPage from "./UserProfile";
 import GoogleIcon from '@mui/icons-material/Google';
 
 async function createDB(uid: string, name: string | null, email: string | null, photoURL: string | null) {
@@ -74,7 +74,7 @@ function LoginOrSignUp() {
         return (
             <div>
                 {/* <HomePage userUid={user.uid} /> */}
-                <User />
+                <UserPage user={user} loading={loading} error={error} />
             </div>
         );
     }

@@ -4,17 +4,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { onSnapshot, doc, updateDoc, arrayRemove, DocumentData } from "firebase/firestore";
 import { Button } from "@mui/material";
+import AuthorsWork from "./AuthorsWork";
 import Image from "next/image";
 import Link from "next/link";
-import AuthorsWork from "./AuthorsWork";
+import { User } from "firebase/auth";
 
 // import { Button, ButtonGroup } from "@chakra-ui/react";
 
-function User() {
-    const [user, loading, error] = useAuthState(auth);
+function UserProfile({ user, loading, error }: { user: User | null | undefined, loading: boolean, error: Error | undefined }) {
     const [userData, setuserData] = useState<DocumentData | null | undefined>(null);
-
-
     useEffect(() => {
         const unsub = onSnapshot(doc(db, "authors", user!.uid), (doc) => {
             setuserData(doc.data());
@@ -33,8 +31,12 @@ function User() {
     }
     if (error) {
         return (
-            <div>
-                <p>Sorry :</p>
+            <div className={styles.container2}>
+
+                <Button variant="outlined">
+                    Sorry page down.....
+                </Button>
+
             </div>
         );
     }
@@ -83,7 +85,7 @@ function User() {
                 )
                 }
                 {userData &&
-                    <AuthorsWork authorId={user!.uid} papersDocRefArr={userData!.papersDocRefArr} />
+                    <AuthorsWork authorId={user!.uid} papersDocRefArrProp={userData!.papersDocRefArr} />
                 }
             </main >
         );
@@ -93,4 +95,4 @@ function User() {
         )
     }
 }
-export default User;
+export default UserProfile;

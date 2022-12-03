@@ -12,7 +12,7 @@
   display: grid;
 
   .modal {
-    background-color: red;
+    // background-color: red;
     display: grid;
     justify-content: center;
   }
@@ -55,6 +55,37 @@
   .submitButton {
     justify-content: center;
     padding: 2em 0;
+  }
+}
+
+.paypage {
+  h2 {
+    text-align: center;
+  }
+
+  .previewImgHolder {
+    padding: 1.5em;
+
+    .previewImg {
+      position: relative;
+      min-height: 9em;
+      min-width: 9em;
+    }
+  }
+
+  .payButton {
+    display: flex;
+    justify-content: center;
+
+    Button {
+      background-color: #ffb412;
+      color: black;
+    }
+  }
+
+  .note {
+    font-size: 0.9em;
+    padding-bottom: 2em;
   }
 }
 

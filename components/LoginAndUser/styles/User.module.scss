@@ -31,11 +31,12 @@
             width: 7em;
         }
 
+        img {
+            clip-path: circle(50% at 50% 50%);
+        }
+
     }
 
-    img {
-        clip-path: circle(50% at 50% 50%);
-    }
 
 }
 
@@ -43,23 +44,18 @@
     display: grid;
 
     h3 {
-        display: grid;
+        display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     .imgAndDesc {
         display: flex;
 
-        position: relative;
-
         .bookCover {
             position: relative;
-            width: 7em;
-            height: 7em;
-            flex: 0 0 20%;
+            flex: 0 0 25%;
         }
-
-        .desc {}
     }
 
     .likeDownload {
