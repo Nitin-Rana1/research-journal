@@ -64,6 +64,20 @@ function AuthorsWork({
       );
     }
   }, []);
+<<<<<<< HEAD
+=======
+
+  // function downloadThisUrl(fileUrl: string): void {
+  //     console.log("donwload url", fileUrl);
+  //     const xhr = new XMLHttpRequest();
+  //     xhr.responseType = 'blob';
+  //     xhr.onload = (event) => {
+  //         const blob = xhr.response;
+  //     };
+  //     xhr.open('GET', fileUrl);
+  //     xhr.send();
+  // }
+>>>>>>> pagenav
   async function handlePaperDelete(paperId: string) {
     //Database Deletes
     await deleteDoc(doc(db, "authorswork", paperId));
@@ -104,6 +118,18 @@ function AuthorsWork({
       }
     }
   }
+  // async function handleLike(paperId: string, oldLikes: number) {
+  //     const paperRef = doc(db, "authorswork", paperId);
+  //     await updateDoc(paperRef, {
+  //         likes: oldLikes + 1
+  //     });
+  // }
+  // async function handleDownload(paperId: string, oldDownloads: number) {
+  //     const paperRef = doc(db, "authorswork", paperId);
+  //     await updateDoc(paperRef, {
+  //         downloads: oldDownloads + 1
+  //     });
+  // }
   return (
     <main className={styles.authorswork}>
       {workDataArr.length != 0 &&
