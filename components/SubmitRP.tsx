@@ -84,7 +84,7 @@ function openJsCheckoutPopup(
         // after successfully updating configuration, invoke checkoutjs
         window.Paytm.CheckoutJS.invoke();
       })
-      .catch(function onError(error) {
+      .catch(function onError(error: any) {
         console.log("error => ", error);
       });
   }
