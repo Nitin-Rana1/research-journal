@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { ChangeEventHandler, useEffect, useState } from "react";
 import styles from "./styles/SubmitRP.module.scss";
-import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import { nanoid } from "nanoid";
 import {
@@ -21,18 +20,11 @@ import {
   arrayUnion,
   serverTimestamp,
 } from "firebase/firestore";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { storage, db, auth } from "../fireb/firebApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
-import Router from "next/router";
 import { useRouter } from "next/router";
-import { UploadFile } from "@mui/icons-material";
 import Script from "next/script";
 import Config from "../config.js";
 
@@ -98,6 +90,7 @@ function SubmitRP() {
   const [previewImgUrl, setPreviewImgUrl] = useState<
     string | ArrayBuffer | null
   >(null);
+
   const [user, loading, error] = useAuthState(auth);
   const [userData, setuserData] = useState<DocumentData | null | undefined>(
     null
@@ -111,7 +104,6 @@ function SubmitRP() {
   const router = useRouter();
 
   //submit button
-  const [payPage, setPayPage] = useState(false);
   useEffect(() => {
     if (user) {
       const unsub = onSnapshot(doc(db, "authors", user!.uid), (doc) => {
@@ -298,116 +290,86 @@ function SubmitRP() {
           </Box>
         </Modal>
       </div>
-      {!payPage ? (
-        <article>
-          <h3>Submit Your Paper</h3>
-          <div className={styles.alert}>
-            {emptyField && <Alert severity="error">Fill All The Fields</Alert>}
-          </div>
-          <div className={styles.row}>
-            <span>Research Paper Title:</span>
-            <TextField
-              onChange={(e) => {
-                setEmptyField(false);
-                setRpTitle(e.currentTarget.value);
-              }}
-              id="outlined-basic"
-              label="Paper Title"
-              variant="outlined"
-              value={rpTitle}
+      <article>
+        <h3>Submit Your Paper</h3>
+        <div className={styles.alert}>
+          {emptyField && <Alert severity="error">Fill All The Fields</Alert>}
+        </div>
+        <div className={styles.row}>
+          <span>Research Paper Title:</span>
+          <TextField
+            onChange={(e) => {
+              setEmptyField(false);
+              setRpTitle(e.currentTarget.value);
+            }}
+            id="outlined-basic"
+            label="Paper Title"
+            variant="outlined"
+            value={rpTitle}
+          />
+        </div>
+        <div className={styles.row}>
+          <span>Paper Description:</span>
+          <TextField
+            onChange={(e) => {
+              setEmptyField(false);
+              setDesc(e.currentTarget.value);
+            }}
+            id="outlined-basic"
+            label="Paper Description"
+            variant="outlined"
+            value={desc}
+          />
+        </div>
+        <div className={styles.row}>
+          <span>Paper&apos;s Cover Photo:</span>
+          <Button
+            variant="outlined"
+            component="label"
+            endIcon={<PictureAsPdfIcon />}
+          >
+            Paper Cover
+            <input
+              hidden
+              accept="image/*"
+              type="file"
+              onChange={handleImgInput}
             />
-          </div>
-          <div className={styles.row}>
-            <span>Paper Description:</span>
-            <TextField
-              onChange={(e) => {
-                setEmptyField(false);
-                setDesc(e.currentTarget.value);
-              }}
-              id="outlined-basic"
-              label="Paper Description"
-              variant="outlined"
-              value={desc}
+          </Button>
+        </div>
+        <div className={styles.row}>
+          <span>Reseach Paper:</span>
+          <Button
+            variant="outlined"
+            component="label"
+            endIcon={<PictureAsPdfIcon />}
+          >
+            Research Paper
+            <input
+              hidden
+              accept=".pdf"
+              type="file"
+              onChange={handleFileInput}
             />
-          </div>
-          <div className={styles.row}>
-            <span>Paper&apos;s Cover Photo:</span>
-            <Button
-              variant="outlined"
-              component="label"
-              endIcon={<PictureAsPdfIcon />}
-            >
-              Paper Cover
-              <input
-                hidden
-                accept="image/*"
-                type="file"
-                onChange={handleImgInput}
-              />
-            </Button>
-          </div>
-          <div className={styles.row}>
-            <span>Reseach Paper:</span>
-            <Button
-              variant="outlined"
-              component="label"
-              endIcon={<PictureAsPdfIcon />}
-            >
-              Research Paper
-              <input
-                hidden
-                accept=".pdf"
-                type="file"
-                onChange={handleFileInput}
-              />
-            </Button>
-          </div>
-          <div className={`${styles.row} ${styles.submitButton}`}>
-            <Button variant="contained" onClick={handlePayPage}>
-              Pay and Publish
-            </Button>
-          </div>
-        </article>
-      ) : (
-        <article className={styles.paypage}>
-          <h2>Title: {rpTitle}</h2>
-          <div className={styles.previewImgHolder}>
-            <span>{desc}</span>
-            <div className={styles.previewImg}>
-              {typeof previewImgUrl == "string" ? (
-                <Image src={previewImgUrl} fill alt="Preview Image" />
-              ) : (
-                <Image src="/logo.png" alt="Preview Image" fill />
-              )}
-            </div>
-          </div>
-          <div className={styles.note}>
-            {" "}
-            <b>Note:-</b> Publish your Research Paper {rpTitle} by paying $20
-            processing fee
-          </div>
-          <div className={styles.payButton}>
-            <Button variant="contained" onClick={PAY}>
-              Pay $20
-            </Button>
-          </div>
-        </article>
-      )}
-      {!payPage && (
-        <>
-          <Divider>Preview Paper</Divider>
-          <div className={styles.previewImgHolder}>
-            <span>{rpTitle == "" ? "Your Paper Title" : rpTitle}</span>
-            <div className={styles.previewImg}>
-              {typeof previewImgUrl == "string" ? (
-                <Image src={previewImgUrl} fill alt="Preview Image" />
-              ) : (
-                <Image src="/logo.png" alt="Preview Image" fill />
-              )}
-            </div>
-          </div>
-        </>
-      )}
+          </Button>
+        </div>
+        <div className={`${styles.row} ${styles.submitButton}`}>
+          <Button variant="contained" onClick={handlePayPage}>
+            Pay and Publish
+          </Button>
+        </div>
+      </article>
+      <Divider>Preview Paper</Divider>
+      <div className={styles.previewImgHolder}>
+        <span>{rpTitle == "" ? "Your Paper Title" : rpTitle}</span>
+        <div className={styles.previewImg}>
+          {typeof previewImgUrl == "string" ? (
+            <Image src={previewImgUrl} fill alt="Preview Image" />
+          ) : (
+            <Image src="/logo.png" alt="Preview Image" fill />
+          )}
+        </div>
+      </div>
     </main>
   );
 }

@@ -9,7 +9,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { custId } = req.query;
-  console.log("server", custId);
   const orderId = `Ord_${Date.now()}`;
   const amount = "20";
   const paytmParams: any = {};
@@ -52,6 +51,5 @@ export default async function handler(
     orderId,
     txnToken: obj.body.txnToken,
   };
-  console.log(data);
   res.send(data);
 }

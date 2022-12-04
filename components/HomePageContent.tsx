@@ -7,10 +7,11 @@ function HomePageContent({ handleSubmitPageButton }: any) {
     <main className={styles.mainSection}>
       <h1>Call For Work</h1>
       <div className={styles.buttonDiv}>
-        <Link href = "/submit-paper">
         <Button onClick={handleSubmitPageButton} variant="contained">
-          Submit Journal</Button>
+        <Link href = "/submit-paper">
+          Submit Journal
         </Link>
+          </Button>
       </div>
       <AboutTheJournal />
     </main>
