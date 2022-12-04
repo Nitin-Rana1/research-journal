@@ -230,14 +230,6 @@ function SubmitRP() {
     setEmptyField(false);
     UploadFile();
   }
-  function handlePayPage() {
-    if (!file || !imgFile || rpTitle == "" || desc == "") {
-      setEmptyField(true);
-      return;
-    }
-    setPayPage(true);
-  }
-
   if (loading) {
     return (
       <div className={styles.loadingScreen}>
@@ -354,7 +346,7 @@ function SubmitRP() {
           </Button>
         </div>
         <div className={`${styles.row} ${styles.submitButton}`}>
-          <Button variant="contained" onClick={handlePayPage}>
+          <Button variant="contained" onClick={PAY} sx = {{color: "black"}}>
             Pay and Publish
           </Button>
         </div>
