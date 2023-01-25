@@ -1,5 +1,3 @@
-import { CleaningServices } from "@mui/icons-material";
-import { setIndexConfiguration } from "firebase/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 import Config from "../../config";
 import PaytmChecksum from "../../PaytmChecksum";

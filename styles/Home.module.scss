@@ -7,16 +7,69 @@
   background-color: #c8cdd0;
 }
 
-.box {}
+.box {
+}
 
+//common
+.authorswork {
+  .titleLine {
+    display: flex;
+    justify-content: space-around;
+  }
+  .authorName {
+    font-style: italic;
+    font-size: 0.7em;
+  }
+  display: grid;
+  article {
+    margin-bottom: 2.5em;
+  }
+  h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imgAndDesc {
+    display: flex;
+    justify-content: space-between;
+    .bookCover {
+      position: relative;
+      width: 25vw;
+      height: 25vw;
+      //   flex: 0 0 25%;
+    }
+  }
+
+  .likeDownload {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .deleteDownload {
+    display: flex;
+    justify-content: space-between;
+  }
+  overflow-x: hidden;
+}
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+  .imgAndDesc {
+    .bookCover {
+      width: 15vw !important;
+      height: 15vw !important ;
+      //   flex: 0 0 25%;
+    }
+  }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {

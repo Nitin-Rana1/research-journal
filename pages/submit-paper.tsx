@@ -29,7 +29,7 @@ import {
 import LoginOrSignUp from "../components/LoginAndUser/LoginOrSignUp";
 import AboutUs from "../components/AboutUs/AboutUsC";
 import EditoryPolicy from "../components/EditorialPolicy/EditoryPolicyC";
-import CurrentIssueC from "../components/CurrentIssueC";
+import CurrentIssueC from "../components/CurrentIssue/CurrentIssueC";
 
 import { auth } from "../fireb/firebApp";
 import { signOut } from "firebase/auth";

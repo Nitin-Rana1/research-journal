@@ -221,6 +221,7 @@ function SubmitRP() {
     );
   }
   async function handleSubmit() {
+    console.log("HandleSUBBBMIT");
     if (!file || !imgFile || rpTitle == "" || desc == "") {
       setEmptyField(true);
       return;
@@ -346,7 +347,14 @@ function SubmitRP() {
           </Button>
         </div>
         <div className={`${styles.row} ${styles.submitButton}`}>
-          <Button variant="contained" onClick={PAY} sx = {{color: "black"}}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              handleSubmit();
+              PAY();
+            }}
+            sx={{ color: "black" }}
+          >
             Pay and Publish
           </Button>
         </div>

@@ -5,6 +5,7 @@ import {
   deleteDoc,
   arrayRemove,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 import { forwardRef, useEffect, useState } from "react";
 import { db, storage } from "../../fireb/firebApp";
@@ -25,6 +26,7 @@ import { ThumbUpSharp } from "@mui/icons-material";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { deleteObject, getStorage, ref } from "firebase/storage";
+import BookCard from "../BookCard";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -42,9 +44,7 @@ function AuthorsWork({
   authorId: string;
   papersDocRefArrProp: string[];
 }) {
-  const [workDataArr, setWorkDataArr] = useState<(DocumentData | undefined)[]>(
-    []
-  );
+  const [workDataArr, setWorkDataArr] = useState<DocumentData[]>([]);
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -55,15 +55,22 @@ function AuthorsWork({
     setOpen(false);
   };
   useEffect(() => {
-    for (let i = 0; i < papersDocRefArrProp.length; i++) {
-      const unsub = onSnapshot(
-        doc(db, "authorswork", papersDocRefArrProp[i]),
-        (doc) => {
-          setWorkDataArr([...workDataArr, { ...doc.data(), paperId: doc.id }]);
+    async function dataRetrive() {
+      let temp = [];
+      for (let i = 0; i < papersDocRefArrProp.length; i++) {
+        const paperRef = doc(db, "authorswork", papersDocRefArrProp[i]);
+        const docSnap = await getDoc(paperRef);
+        if (docSnap.exists()) {
+          temp.push({ ...docSnap.data(), paperId: docSnap.id });
         }
-      );
+      }
+      setWorkDataArr(temp);
     }
+    dataRetrive();
   }, []);
+  useEffect(() => {
+    console.log("CHANGIN WORKDATA ARR", workDataArr);
+  }, [workDataArr]);
 
   // function downloadThisUrl(fileUrl: string): void {
   //     console.log("donwload url", fileUrl);
@@ -129,76 +136,41 @@ function AuthorsWork({
   // }
   return (
     <main className={styles.authorswork}>
-      {workDataArr.length != 0 &&
-        workDataArr.map((v, i) => {
-          return (
-            <article key={i}>
-              {v && (
-                <>
-                  <section>
-                    <h3>
-                      {i + 1}. {v.title}
-                    </h3>
-                    <div className={styles.imgAndDesc}>
-                      <div className={styles.bookCover}>
-                        <img src={v.bookCover} alt="dkk" />
-                        {/* <Image src={v.bookCover} alt="book Cover" fill /> */}
-                      </div>
-                      <div className={styles.desc}>{v.desc}</div>
-                    </div>
-                    <div className={styles.likeDownload}>
-                      <div>
-                        Like: {v.likes} <ThumbUpIcon />
-                      </div>
-                      <div>Downloads: {v.downloads} </div>
-                    </div>
-                    <div className={styles.deleteDownload}>
-                      <Button variant="outlined" onClick={handleClickOpen}>
-                        <DeleteIcon sx={{ color: "red" }} />
-                      </Button>
-                      <a
-                        target="_blank"
-                        href={v.fileUrl}
-                        rel="noopener noreferrer"
-                      >
-                        <Button variant="contained">Open Papers</Button>
-                      </a>
-                    </div>
-                  </section>
-                  <Divider />
-                  <Dialog
-                    open={open}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    onClose={handleClose}
-                    aria-describedby="alert-dialog-slide-description"
-                  >
-                    <DialogTitle>
-                      {"Are you sure to delete your paper?"}
-                    </DialogTitle>
-                    <DialogContent>
-                      <DialogContentText id="alert-dialog-slide-description">
-                        Deleting the paper is irreversible. Your paper &quot;
-                        {v.title}&quot; will be deleted permanently!
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleClose}>Disagree</Button>
-                      <Button
-                        onClick={() => {
-                          handleClose();
-                          handlePaperDelete(v.paperId);
-                        }}
-                      >
-                        Agree
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                </>
-              )}
-            </article>
-          );
-        })}
+      <h2>Total Papers: {workDataArr.length}</h2>
+      {workDataArr.map((v, i) => {
+        return (
+          <article key={i}>
+            <BookCard v={v} i={i} handleClickOpen={handleClickOpen} />
+            <Divider />
+            <Dialog
+              open={open}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={handleClose}
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle>{"Are you sure to delete your paper?"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                  Deleting the paper is irreversible. Your paper &quot;
+                  {v.title}&quot; will be deleted permanently!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Disagree</Button>
+                <Button
+                  onClick={() => {
+                    handleClose();
+                    handlePaperDelete(v.paperId);
+                  }}
+                >
+                  Agree
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </article>
+        );
+      })}
     </main>
   );
 }

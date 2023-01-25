@@ -1,9 +1,9 @@
 import styles from "./styles/Header.module.scss";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 import { Button } from "@mui/material";
-import Menu from '@mui/material/Menu';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from "@mui/material/Menu";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,16 +36,21 @@ function Header({ toggleDrawer }: any) {
   }
   return (
     <header className={styles.header}>
-
       <div className={styles.headerContent}>
-        {/* <div className={styles.logoIcon}>
-          <Image src="/logo.png" fill alt="logoPic" />
-        </div> */}
+        {/* <div className={styles.logoIcon}> */}
+        <Image
+          src="/header.png"
+          fill
+          alt="logoPic"
+          className={styles.headerImg}
+        />
+        {/* </div> */}
         <h3 className={styles.headerTitle}>
           Graphic Era Department of Science and Journal
         </h3>
         <h5 className={styles.headerSubTitle}>
-          Established to help students in their Research<br />
+          Established to help students in their Research
+          <br />
           <b>Transforming Dreams into Reality</b>
         </h5>
         <Link href="/login-signup">
@@ -60,19 +65,23 @@ function Header({ toggleDrawer }: any) {
           <MenuIcon onClick={toggleDrawer(true)} />
         </span>
         <Link href="/">
-          <Button className={styles.menus} variant="text">Home</Button>
+          <Button className={styles.menus} variant="text">
+            Home
+          </Button>
         </Link>
         <Link href="/current-issue">
-          <Button className={styles.menus} variant="text">Current Issue</Button>
+          <Button className={styles.menus} variant="text">
+            Current Issue
+          </Button>
         </Link>
         <div className={styles.menus}>
           <Button
             id="basic-button"
-            aria-controls={openEdit ? 'basic-menu' : undefined}
+            aria-controls={openEdit ? "basic-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={openEdit ? 'true' : undefined}
+            aria-expanded={openEdit ? "true" : undefined}
             onClick={handleClickEdit}
-          // className={styles.menus}
+            // className={styles.menus}
           >
             Editorial Policies <KeyboardArrowDownIcon />
           </Button>
@@ -82,15 +91,30 @@ function Header({ toggleDrawer }: any) {
             open={openEdit}
             onClose={handleCloseEdit}
             MenuListProps={{
-              'aria-labelledby': 'basic-button',
+              "aria-labelledby": "basic-button",
             }}
           >
-            {["Publication Ethics", "Open Access Policy", "Peer-review Policy", "Digital prevention Policy", "Plagiarism Policy", "Journal Policy", "Repository Policy", "Copy Right Policy"].map((value, i) => {
+            {[
+              "Publication Ethics",
+              "Open Access Policy",
+              "Peer-review Policy",
+              "Digital prevention Policy",
+              "Plagiarism Policy",
+              "Journal Policy",
+              "Repository Policy",
+              "Copy Right Policy",
+            ].map((value, i) => {
               return (
                 <Link key={i} href="/editory-policy">
-                  <MenuItem onClick={() => { handleCloseEdit() }}>{value}</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      handleCloseEdit();
+                    }}
+                  >
+                    {value}
+                  </MenuItem>
                 </Link>
-              )
+              );
             })}
           </Menu>
         </div>
@@ -98,13 +122,14 @@ function Header({ toggleDrawer }: any) {
         <div className={styles.menus}>
           <Button
             id="basic-button"
-            aria-controls={openAbout ? 'basic-menu' : undefined}
+            aria-controls={openAbout ? "basic-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={openAbout ? 'true' : undefined}
+            aria-expanded={openAbout ? "true" : undefined}
             onClick={handleClickAbout}
-          // className={styles.menus}
+            // className={styles.menus}
           >
-            About<KeyboardArrowDownIcon />
+            About
+            <KeyboardArrowDownIcon />
           </Button>
           <Menu
             id="basic-menu"
@@ -112,24 +137,36 @@ function Header({ toggleDrawer }: any) {
             open={openAbout}
             onClose={handleCloseAbout}
             MenuListProps={{
-              'aria-labelledby': 'basic-button',
+              "aria-labelledby": "basic-button",
             }}
           >
-            {["About The Journal", "Focus & Scope", "Editorial Team"].map((value, i) => {
-              return (
-                <Link key={i} href="/about-us">
-                  <MenuItem onClick={() => { handleCloseAbout() }}>{value}</MenuItem>
-                </Link>
-              )
-            })}
+            {["About The Journal", "Focus & Scope", "Editorial Team"].map(
+              (value, i) => {
+                return (
+                  <Link key={i} href="/about-us">
+                    <MenuItem
+                      onClick={() => {
+                        handleCloseAbout();
+                      }}
+                    >
+                      {value}
+                    </MenuItem>
+                  </Link>
+                );
+              }
+            )}
           </Menu>
         </div>
         <Link href="/login-signup">
-          <Button className={styles.menus} variant="text">Sign In/Up</Button>
+          <Button className={styles.menus} variant="text">
+            Sign In/Up
+          </Button>
         </Link>
-        <Button onClick={handleLogOut} className={styles.menus} variant="text">Log Out</Button>
+        <Button onClick={handleLogOut} className={styles.menus} variant="text">
+          Log Out
+        </Button>
       </nav>
     </header>
-  )
+  );
 }
 export default Header;

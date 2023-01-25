@@ -8,7 +8,7 @@
 
   .headerContent {
     position: relative;
-    background-image: url("/header.png");
+    // background-image: url("/header.png");
     background-color: #9fb3f9;
     font-size: 1em;
     padding: 1em 2.5em 3em 2.5em;
@@ -17,10 +17,14 @@
     text-align: center;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 0 27px 0, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 0 27px 0,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     color: white;
     text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.46);
-
+    h3,
+    h5 {
+      z-index: 10;
+    }
     h3 {
       font-size: 1.2em;
     }
@@ -28,8 +32,6 @@
     h5 {
       font-size: 0.7em;
     }
-
-
 
     nav {
       display: none;
@@ -58,10 +60,9 @@
     }
   }
 
-  .logoIcon {
+  .headerImg {
     position: relative;
-    width: 5em;
-    height: 5em;
+    // z-index: -10;
   }
 
   h3,
@@ -81,10 +82,12 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
@@ -125,4 +128,5 @@
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+}

@@ -1,99 +1,66 @@
 .container2 {
-    display: grid;
-    justify-content: center;
-    background-color: red;
-    min-width: 40vw;
-    min-height: 40vh;
+  display: grid;
+  justify-content: center;
+  background-color: red;
+  min-width: 40vw;
+  min-height: 40vh;
 }
 
 .main {
-    position: relative;
-    display: grid;
+  position: relative;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 2em;
+
+  div {
+    padding-bottom: 0.5em;
+  }
+
+  .imgHolder {
+    display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 50vh;
-    padding: 2em;
+    padding-bottom: 2em;
 
-    div {
-        padding-bottom: 0.5em;
+    .img {
+      position: relative;
+      padding: 1.5em;
+      height: 7em;
+      width: 7em;
     }
 
-    .imgHolder {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 2em;
-
-        .img {
-
-            position: relative;
-            padding: 1.5em;
-            height: 7em;
-            width: 7em;
-        }
-
-        img {
-            clip-path: circle(50% at 50% 50%);
-        }
-
+    img {
+      clip-path: circle(50% at 50% 50%);
     }
-
-
-}
-
-.authorswork {
-    display: grid;
-
-    h3 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .imgAndDesc {
-        display: flex;
-
-        .bookCover {
-            position: relative;
-            flex: 0 0 25%;
-        }
-    }
-
-    .likeDownload {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .deleteDownload {
-        display: flex;
-        justify-content: space-between;
-    }
-
-
-    overflow-x: hidden;
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    .main {
-        min-width: 60vw;
-        max-width: 60vw;
+  .main {
+    min-width: 60vw;
+    max-width: 60vw;
 
-        img {
-            width: 7em;
-            height: 7em;
-        }
+    img {
+      width: 7em;
+      height: 7em;
     }
-
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+}
