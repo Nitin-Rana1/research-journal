@@ -1,7 +1,7 @@
 export default function Failure() {
   return (
     <div>
-      <h1>Payment Failed</h1>
+      <h3>Payment Failed!!!</h3>
     </div>
   );
 }
