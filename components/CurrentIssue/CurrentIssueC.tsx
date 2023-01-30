@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../fireb/firebApp";
-import BookCard from "../BookCard";
+import BookCardCurrIssue from "../BookCardCurrIssue";
 import styles from "./CurrentIssue.module.scss";
 
 function CurrentIssueC() {
@@ -29,14 +29,13 @@ function CurrentIssueC() {
     }
     getData();
   }, []);
-  function handleClickOpen() {}
   return (
     <main className={styles.main}>
       <h1>Popular Research Papers</h1>
       {booksData.map((v, i) => {
         return (
           <article key={i}>
-            <BookCard v={v} i={i} handleClickOpen={handleClickOpen} />
+            <BookCardCurrIssue v={v} i={i} />
           </article>
         );
       })}
