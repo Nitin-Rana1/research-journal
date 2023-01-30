@@ -37,7 +37,7 @@
       position: relative;
       min-width: 33vw;
       min-height: 33vw;
-      margin-right: 2em;
+      margin-right: 4em;
       //   flex: 0 0 25%;
     }
   }
@@ -64,8 +64,8 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .bookCover {
-    min-width: 15vw !important;
-    min-height: 15vw !important ;
+    min-width: 18vw !important;
+    min-height: 18vw !important ;
     //   flex: 0 0 25%;
   }
 }
