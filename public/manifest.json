@@ -1,0 +1,21 @@
+{
+  "name": "Research Paper Publishing",
+  "short_name": "Research Paper",
+  "icons": [
+    {
+      "src": "/man1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/man2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
