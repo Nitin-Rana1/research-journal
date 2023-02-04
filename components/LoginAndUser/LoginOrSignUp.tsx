@@ -79,8 +79,6 @@ function LoginOrSignUp() {
   if (user) {
     return (
       <div>
-        {/* <HomePage userUid={user.uid} /> */}
-        {/* <UserPage user={user} loading={loading} error={error} /> */}
         <UserProfile user={user} loading={loading} error={error} />
       </div>
     );

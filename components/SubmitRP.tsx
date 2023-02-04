@@ -221,7 +221,6 @@ function SubmitRP() {
     );
   }
   async function handleSubmit() {
-    console.log("HandleSUBBBMIT");
     if (!file || !imgFile || rpTitle == "" || desc == "") {
       setEmptyField(true);
       return;

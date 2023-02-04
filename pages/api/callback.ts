@@ -12,7 +12,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     checksum
   );
   if (verifyChecksum) {
-    res.redirect("/success");
+    // res.redirect("/success");
+    res.redirect("/login-signup");
   } else {
     res.redirect("/failure");
   }
