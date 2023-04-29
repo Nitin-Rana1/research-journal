@@ -4,6 +4,7 @@ import Config from "../../config";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body;
+  console.log(data);
   const checksum = data.CHECKSUMHASH;
   delete data.CHECKSUMHASH;
   const verifyChecksum = PaytmChecksum.verifySignature(
